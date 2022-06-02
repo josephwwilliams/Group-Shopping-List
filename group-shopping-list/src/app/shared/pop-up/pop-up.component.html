@@ -1,0 +1,15 @@
+<div class="container">
+  <div *ngIf="data.item !== undefined">
+    {{
+      (data.item.product_name ? data.item.product_name : "Product ") +
+        " added to shopping list!"
+    }}
+  </div>
+  <div *ngIf="data.item === undefined">
+    {{
+      (data.removedItem.product_name
+        ? data.removedItem.product_name
+        : "Product ") + " removed from shopping list!"
+    }}
+  </div>
+</div>

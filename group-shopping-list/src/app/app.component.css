@@ -1,0 +1,11 @@
+mat-sidenav-container {
+  overflow: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 64px;
+}
+mat-sidenav-content {
+  padding: 20px;
+}
