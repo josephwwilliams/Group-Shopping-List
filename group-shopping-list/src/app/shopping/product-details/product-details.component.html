@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="form-group">
+    <div class="input-group">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Search a barcode"
+        [(ngModel)]="barcode"
+        (keyup.enter)="getProductsByBarcode()"
+      />
+      <div class="input-group-append">
+        <button
+          class="material-icons btn btn-outline-secondary"
+          type="button"
+          [disabled]="barcode === undefined"
+          (click)="getProductsByBarcode()"
+        >
+          search
+        </button>
+      </div>
+    </div>
+  </div>
+  <button
+    style="width: 90%"
+    class="addToShoppingList"
+    mat-raised-button
+    aria-label="Example icon button with a shopping icon"
+    (click)="addToShoppingList()"
+  >
+    <span class="material-icons"> shopping_basket </span>
+  </button>
+</div>
+<div class="container" *ngIf="selectedItem">
+  {{
+    selectedItem.product_name
+      ? selectedItem.product_name
+      : selectedItem.product_name_fr
+  }}
+  {{ selectedItem.nutriments["energy-kcal_serving"] | number }} Calories Per
+  Serving
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        style="border-radius: 5px"
+        [src]="
+          selectedItem.image_url
+            ? selectedItem.image_url
+            : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
+        "
+        alt=""
+      />
+    </div>
+    <div class="col-md-6">
+      <div
+        *ngIf="selectedItem && !showSpinner && pieChartData"
+        style="max-width: 600px"
+      >
+        <div>
+          <div class="chart">
+            <canvas
+              baseChart
+              [colors]="pieChartColors"
+              [data]="pieChartData"
+              [type]="pieChartType"
+              [options]="pieChartOptions"
+              [plugins]="pieChartPlugins"
+            >
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div>
+
+<div
+  *ngIf="selectedItem && !showSpinner && pieChartData"
+  style="max-width: 600px"
+>
+  <div>
+    <div class="chart">
+      <canvas
+        baseChart
+        [colors]="pieChartColors"
+        [data]="pieChartData"
+        [type]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+      >
+      </canvas>
+    </div>
+  </div>
+</div> -->
+</div>

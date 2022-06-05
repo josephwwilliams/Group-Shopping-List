@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { PopUpComponent } from 'src/app/shared/pop-up/pop-up.component';
-import { Product } from 'src/app/shared/product';
+import { Product } from 'src/app/shared/interface/product';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class ShoppingListComponent implements OnInit {
   shoppingList: Product[] = [];
   constructor(
     private shoppingListService: ShoppingListService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -22,11 +24,15 @@ export class ShoppingListComponent implements OnInit {
 
   RemoveFromShoppingList(item: Product, i: number) {
     this.shoppingListService.shoppingList.splice(i, 1);
+    this.shoppingListService.changeToShoppingList.next(-1);
     this._snackBar.openFromComponent(PopUpComponent, {
       duration: 1500,
       data: {
         removedItem: item,
       },
     });
+  }
+  openProduct(item: Product) {
+    this.router.navigate([`product/nutrients/${item._id}`]);
   }
 }

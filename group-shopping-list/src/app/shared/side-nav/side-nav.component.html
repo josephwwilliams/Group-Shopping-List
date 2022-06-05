@@ -13,10 +13,31 @@
     <button
       mat-button
       class="mat-display-1"
-      routerLink="shopping-list"
+      routerLink="shopping"
       routerLinkActive="active-link"
     >
-      <span class="material-icons"> format_list_bulleted </span>
+      <span class="material-icons"> store </span>
+    </button>
+  </div>
+  <div class="row" *ngIf="router.url">
+    <button
+      mat-button
+      class="mat-display-1"
+      [routerLink]="'product/nutrients/search'"
+      routerLinkActive="active-link"
+    >
+      <span class="material-icons"> menu_book </span>
+      <a [routerLink]="['product/nutrients']" style="display: none"></a>
+    </button>
+  </div>
+  <div class="row">
+    <button
+      mat-button
+      class="mat-display-1"
+      routerLink="fitness"
+      routerLinkActive="active-link"
+    >
+      <span class="material-icons"> monitor_heart </span>
     </button>
   </div>
 </div>

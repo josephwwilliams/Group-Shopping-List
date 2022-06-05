@@ -467,6 +467,8 @@ export interface Product {
   product_name_debug_tags: [];
   product_name_en: string;
   product_name_en_imported: string;
+  product_name_fr: string;
+  product_name_fr_imported: string;
   product_quantity: number;
   purchase_places: string;
   purchase_places_tags: string[];

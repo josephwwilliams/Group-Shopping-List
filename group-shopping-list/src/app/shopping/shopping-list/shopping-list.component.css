@@ -1,0 +1,13 @@
+.itemContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 1.5em 2.5em;
+}
+.RemoveFromShoppingList {
+  position: absolute;
+  bottom: 5px;
+  left: 5%;
+  background-color: #86b049;
+}

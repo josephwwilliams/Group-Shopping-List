@@ -1,0 +1,79 @@
+<div class="itemContainer">
+  <div class="row">
+    <h1>Shopping List</h1>
+    <!-- <div *ngFor="let item of shoppingList; let i = index">
+      <div class="row">
+        <img
+          style="max-width: 100px; height: auto"
+          [src]="
+            item.image_url
+              ? item.image_url
+              : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
+          "
+          alt=""
+        />
+      </div>
+      <h1 class="row">
+        {{ item.product_name }}
+      </h1>
+      <p class="row">
+        {{ item.brands }}
+      </p>
+      <button (click)="RemoveFromShoppingList(item, i)">-</button>
+      <hr />
+    </div> -->
+    <mat-card
+      class="example-card"
+      style="
+        width: 200px;
+        height: 400px;
+        margin: 20px;
+        box-shadow: -2px 8px 20px 0px rgba(0, 0, 0, 0.6);
+        border-radius: 5px;
+      "
+      *ngFor="let item of shoppingList"
+    >
+      <mat-card-header>
+        <h1 class="row" style="cursor: pointer" (click)="openProduct(item)">
+          {{ item.product_name ? item.product_name : item.product_name_fr }}
+        </h1>
+      </mat-card-header>
+      <img
+        mat-card-image
+        class="mx-auto d-block"
+        style="
+          max-height: 100px;
+          width: auto;
+          max-width: 100px;
+          border: 2px solid rgb(211, 211, 211);
+          border-radius: 4px;
+          cursor: pointer;
+        "
+        [src]="
+          item.image_url
+            ? item.image_url
+            : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
+        "
+        alt=""
+        (click)="openProduct(item)"
+      />
+      <mat-card-content>
+        <p></p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          class="RemoveFromShoppingList"
+          style="width: 90%"
+          mat-raised-button
+          aria-label="Example icon button with a delete icon"
+          (click)="RemoveFromShoppingList(item, i)"
+        >
+          <span class="material-icons"> delete </span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <div *ngIf="shoppingList.length === 0">
+      <h1>Your shopping list is empty!</h1>
+    </div>
+  </div>
+</div>
