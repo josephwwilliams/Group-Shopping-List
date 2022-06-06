@@ -102,18 +102,7 @@ export class ProductDetailsComponent implements OnInit {
         this.showSpinner = false;
       });
   }
-  // getData() {
-  //   const httpHeaders = new HttpHeaders({
-  //     'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com',
-  //     'X-RapidAPI-Key': 'a854ea3ee6mshb6e132f17e7389ap1aa85ejsne3b1fbc8f540',
-  //   });
-  //   return this.http.get<any>(
-  //     'https://fitness-calculator.p.rapidapi.com/burnedcalorie?activityid=bi_1&activitymin=25&weight=75',
-  //     {
-  //       headers: httpHeaders,
-  //     }
-  //   );
-  // }
+
   addToShoppingList() {
     this.shoppingListService.addToShoppingList(this.selectedItem);
   }
