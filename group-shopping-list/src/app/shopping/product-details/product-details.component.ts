@@ -80,7 +80,6 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
     // this.getData().subscribe((res) => console.log(res));
-    // Hello
   }
   getProductsByBarcode() {
     this.showSpinner = true;
