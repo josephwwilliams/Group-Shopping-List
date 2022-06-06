@@ -6,6 +6,64 @@ mat-toolbar {
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: #5383e8;
+  background-color: #476930;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.toolBarIcons {
+  margin: 15px;
+}
+.toolBarIconClickable {
+  cursor: pointer;
+}
+.mat-badge-content {
+  background: #86b049;
   color: white;
+}
+
+.active-link {
+  background-color: transparent;
+  -webkit-animation: toolbarAction 0.5s alternate infinite;
+  animation: toolbarAction 0.75s alternate infinite;
+  border-radius: 15px;
+}
+@-webkit-keyframes toolbarAction {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes toolbarAction {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.settingsIcon {
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 6s linear infinite;
+}
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

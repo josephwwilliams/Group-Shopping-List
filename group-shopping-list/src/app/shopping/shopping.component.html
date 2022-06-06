@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <div class="form-group">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search for items!"
+          [(ngModel)]="searchTerms"
+          (keyup.enter)="searchForItems()"
+        />
+        <div class="input-group-append">
+          <button
+            class="material-icons btn btn-outline-secondary"
+            type="button"
+            (click)="searchForItems()"
+          >
+            search
+          </button>
+        </div>
+      </div>
+    </div>
+    <mat-form-field
+      appearance="fill"
+      matTooltip="Choose a brand to search from"
+      matTooltipPosition="above"
+    >
+      <mat-label>{{
+        brands.length === 0 ? "Loading brands please wait :)" : "Brands"
+      }}</mat-label>
+      <mat-select
+        [(ngModel)]="brand"
+        name="brand"
+        [disabled]="brands.length === 0"
+      >
+        <mat-option *ngFor="let brand of brands" [value]="brand.id">
+          {{ brand.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="itemContainer" *ngIf="!showSpinner">
+      <mat-card
+        class="example-card"
+        style="
+          width: 200px;
+          height: 400px;
+          margin: 20px;
+          box-shadow: -2px 8px 20px 0px rgba(0, 0, 0, 0.6);
+          border-radius: 5px;
+        "
+        *ngFor="let item of shoppingItems"
+      >
+        <mat-card-header>
+          <h1 class="row" style="cursor: pointer" (click)="openProduct(item)">
+            {{ item.product_name ? item.product_name : item.product_name_fr }}
+          </h1>
+        </mat-card-header>
+        <img
+          mat-card-image
+          class="mx-auto d-block"
+          style="
+            max-height: 100px;
+            width: auto;
+            max-width: 100px;
+            border: 2px solid rgb(211, 211, 211);
+            border-radius: 4px;
+            cursor: pointer;
+          "
+          [src]="
+            item.image_url
+              ? item.image_url
+              : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
+          "
+          alt=""
+          (click)="openProduct(item)"
+        />
+        <mat-card-content>
+          <p></p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            style="width: 90%"
+            class="addToShoppingList"
+            mat-raised-button
+            aria-label="Example icon button with a shopping icon"
+            (click)="addToShoppingList(item)"
+          >
+            <span class="material-icons"> shopping_basket </span>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <!-- </div> -->
+    </div>
+    <div *ngIf="showSpinner">
+      <mat-spinner color="warn"></mat-spinner>
+    </div>
+  </div>
+</div>

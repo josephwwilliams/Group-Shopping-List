@@ -1,5 +1,28 @@
 <mat-toolbar>
-  <span class="material-icons"> storefront </span>
-  <span>Shopper Helper </span>
+  <div class="toolBarIcons">
+    <span style="transform: scale(2)" class="material-icons"> insights </span>
+  </div>
+  <h1>Life Tracker</h1>
   <span class="example-spacer"></span>
+  <div class="toolBarIcons toolBarIconClickable">
+    <span
+      [matBadge]="shoppingList"
+      class="material-icons"
+      routerLink="shopping-list"
+      routerLinkActive="active-link"
+    >
+      shopping_cart
+    </span>
+  </div>
+  <div class="toolBarIcons toolBarIconClickable">
+    <span
+      class="material-icons"
+      [ngClass]="{
+        settingsIcon: isSettingsDialogOpen
+      }"
+      (click)="open()"
+    >
+      settings
+    </span>
+  </div>
 </mat-toolbar>
