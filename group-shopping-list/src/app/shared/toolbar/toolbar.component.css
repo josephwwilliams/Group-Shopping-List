@@ -6,7 +6,8 @@ mat-toolbar {
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: #476930;
+  background-color: #384951;
+  color: white;
 }
 .example-spacer {
   flex: 1 1 auto;
@@ -18,7 +19,7 @@ mat-toolbar {
   cursor: pointer;
 }
 .mat-badge-content {
-  background: #86b049;
+  background: #4d8278;
   color: white;
 }
 

@@ -2,5 +2,12 @@
   position: absolute;
   bottom: 5px;
   left: 5%;
-  background-color: #86b049;
+  background-color: #6d9c8a;
+  color: white;
+}
+img {
+  width: auto;
+  max-height: 500px;
+  max-width: 500px;
+  border-radius: 10px;
 }

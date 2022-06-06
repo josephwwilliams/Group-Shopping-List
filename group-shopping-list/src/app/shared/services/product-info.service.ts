@@ -26,7 +26,7 @@ export class ProductInfoService {
       'https://us.openfoodfacts.org/brands.json'
     );
   }
-  getItemInfo(id: number) {
+  getItemInfo(id: string) {
     return this.http.get<ItemResponse>(
       `https://world.openfoodfacts.org/api/v0/product/${id}.json`
     );

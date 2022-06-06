@@ -1,11 +1,26 @@
-<div class="container">
+<div
+  class="container"
+  style="
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  "
+>
+  <div class="div" *ngIf="data.message">
+    <div class="row" style="text-align: center">
+      {{ data.message
+      }}<mat-icon style="cursor: pointer" routerLink="shopping-list"
+        >shopping_cart</mat-icon
+      >
+    </div>
+  </div>
   <div *ngIf="data.item !== undefined">
     {{
       (data.item.product_name ? data.item.product_name : "Product ") +
         " added to shopping list!"
     }}
   </div>
-  <div *ngIf="data.item === undefined">
+  <div *ngIf="data.item === undefined && !data.message">
     {{
       (data.removedItem.product_name
         ? data.removedItem.product_name

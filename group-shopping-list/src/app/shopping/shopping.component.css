@@ -9,5 +9,10 @@
   position: absolute;
   bottom: 5px;
   left: 5%;
-  background-color: #86b049;
+  background-color: #6d9c8a;
+  color: white;
+}
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #6d9c8a;
 }

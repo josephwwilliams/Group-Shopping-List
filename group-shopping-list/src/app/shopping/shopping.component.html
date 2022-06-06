@@ -1,8 +1,31 @@
-<div class="container">
+<div class="container" data-aos="fade-up" data-aos-duration="1000">
   <div class="row">
     <div class="form-group">
       <div class="input-group">
+        <div class="input-group-append">
+          <mat-form-field
+            style="width: fit-content"
+            appearance="fill"
+            matTooltip="Choose a brand to search from"
+            matTooltipPosition="above"
+          >
+            <mat-label>{{
+              brands.length === 0 ? "Loading brands..." : "Brands"
+            }}</mat-label>
+            <mat-select
+              [(ngModel)]="brand"
+              name="brand"
+              [disabled]="brands.length === 0"
+              (selectionChange)="onChange()"
+            >
+              <mat-option *ngFor="let brand of brands" [value]="brand.id">
+                {{ brand.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <input
+          style="max-height: 38px"
           type="text"
           class="form-control"
           placeholder="Search for items!"
@@ -20,25 +43,12 @@
         </div>
       </div>
     </div>
-    <mat-form-field
-      appearance="fill"
-      matTooltip="Choose a brand to search from"
-      matTooltipPosition="above"
+    <div
+      class="itemContainer"
+      *ngIf="!showSpinner"
+      data-aos="fade-up"
+      data-aos-duration="1000"
     >
-      <mat-label>{{
-        brands.length === 0 ? "Loading brands please wait :)" : "Brands"
-      }}</mat-label>
-      <mat-select
-        [(ngModel)]="brand"
-        name="brand"
-        [disabled]="brands.length === 0"
-      >
-        <mat-option *ngFor="let brand of brands" [value]="brand.id">
-          {{ brand.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div class="itemContainer" *ngIf="!showSpinner">
       <mat-card
         class="example-card"
         style="
@@ -51,7 +61,15 @@
         *ngFor="let item of shoppingItems"
       >
         <mat-card-header>
-          <h1 class="row" style="cursor: pointer" (click)="openProduct(item)">
+          <h1
+            class="row"
+            style="
+              cursor: pointer;
+              font-family: 'Poppins', sans-serif;
+              font-weight: bold;
+            "
+            (click)="openProduct(item)"
+          >
             {{ item.product_name ? item.product_name : item.product_name_fr }}
           </h1>
         </mat-card-header>
@@ -91,8 +109,23 @@
       </mat-card>
       <!-- </div> -->
     </div>
-    <div *ngIf="showSpinner">
+
+    <div *ngIf="showSpinner" class="itemContainer">
       <mat-spinner color="warn"></mat-spinner>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <mat-paginator
+        style="margin-bottom: 50px"
+        #paginator
+        [pageSize]="pageSize"
+        [length]="count"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChange($event)"
+        aria-label="Select page"
+      >
+      </mat-paginator>
     </div>
   </div>
 </div>

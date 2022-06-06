@@ -1,1 +1,68 @@
-<p>fitness-tracking works!</p>
+<div class="container">
+  <div
+    class="row"
+    data-aos="fade-down"
+    data-aos-duration="1500"
+    data-aos-anchor=".mat-display-2"
+  >
+    <div
+      class="mat-display-4"
+      style="
+        text-align: center;
+
+        font-family: 'Lora', serif;
+
+        color: #384951;
+      "
+    >
+      {{ "User's" }} Fitness Tab
+    </div>
+    <mat-progress-bar mode="buffer" value="40"></mat-progress-bar>
+    <h1 style="text-align: center">{{ value }}%</h1>
+  </div>
+  <div class="row">
+    <div
+      class="col-md-6"
+      data-aos="fade-right"
+      data-aos-duration="1500"
+      data-aos-anchor=".mat-display-2"
+    >
+      <div
+        class="mat-display-3"
+        style="
+          text-align: center;
+
+          font-family: 'Lora', serif;
+          padding-top: 80px;
+
+          color: #384951;
+        "
+      >
+        Current Macros for the day
+      </div>
+      <mat-divider></mat-divider>
+      <mat-list>
+        <mat-list-item> Carbs: </mat-list-item>
+        <mat-list-item> Fats: </mat-list-item>
+        <mat-list-item> Protiens: </mat-list-item>
+      </mat-list>
+    </div>
+    <div
+      class="col-md-6"
+      data-aos="fade-left"
+      data-aos-duration="1500"
+      data-aos-anchor=".mat-display-2"
+    >
+      <div class="chart">
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [type]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+        >
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

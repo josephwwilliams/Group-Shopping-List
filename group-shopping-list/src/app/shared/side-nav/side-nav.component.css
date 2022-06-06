@@ -1,7 +1,7 @@
 .container {
   padding: 20px;
   /* background-color: #a8c2fb; */
-  background-color: #86b049;
+  background-color: #4d8278;
   height: 100%;
   max-width: 150px;
   overflow: hidden;
@@ -9,9 +9,10 @@
 button {
   padding: 10px;
   border-radius: 15px;
+  color: white;
 }
 .active-link {
-  background-color: #476930;
+  background-color: #384951;
   -webkit-animation: action 0.5s alternate infinite;
   animation: action 0.75s alternate infinite;
 }

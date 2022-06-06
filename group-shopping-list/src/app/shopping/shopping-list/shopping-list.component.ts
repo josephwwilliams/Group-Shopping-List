@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PopUpComponent } from 'src/app/shared/pop-up/pop-up.component';
 import { Product } from 'src/app/shared/interface/product';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-shopping-list',
@@ -19,6 +20,7 @@ export class ShoppingListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    AOS.init();
     this.shoppingList = this.shoppingListService.shoppingList;
   }
 

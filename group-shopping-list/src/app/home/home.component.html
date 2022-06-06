@@ -1,7 +1,183 @@
-<div class="container" style="text-align: center">
-  <mat-tab-group>
-    <mat-tab label="First"> 1 </mat-tab>
-    <mat-tab label="Second"> 2 </mat-tab>
-    <mat-tab label="Third"> Content 3 </mat-tab>
-  </mat-tab-group>
+<div class="container">
+  <section>
+    <div class="row" data-aos="fade-down" data-aos-duration="3000">
+      <div class="col-md-6">
+        <div
+          class="mat-display-4"
+          style="
+            text-align: center;
+
+            font-family: 'Lora', serif;
+            padding-top: 80px;
+            color: #384951;
+          "
+        >
+          Life Tracker
+        </div>
+        <mat-divider></mat-divider>
+        <div
+          class="mat-display-2"
+          style="
+            text-align: center;
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            color: #384951;
+          "
+        >
+          Don't worry we'll do the counting for you.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="chart">
+          <canvas
+            baseChart
+            [data]="pieChartData"
+            [type]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+          >
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+  <mat-divider></mat-divider>
+  <section>
+    <div class="row">
+      <div
+        class="col-md-6"
+        data-aos="fade-right"
+        data-aos-duration="3000"
+        data-aos-anchor=".mat-display-2"
+      >
+        <div
+          class="mat-headline active"
+          style="
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            color: #384951;
+            cursor: pointer;
+          "
+          [routerLink]="'../product/nutrients/0009800895250'"
+        >
+          Nutella hazelnut spread (Per Serving)
+        </div>
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ element.position }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef> Size </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ element.weight }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <mat-header-cell *matHeaderCellDef> Unit </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{ element.symbol }}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+      </div>
+      <div
+        class="col-md-6"
+        data-aos="fade-left"
+        data-aos-duration="3000"
+        data-aos-anchor=".mat-display-2"
+      >
+        <div
+          class="mat-display-4"
+          style="
+            text-align: center;
+
+            font-family: 'Lora', serif;
+            padding-top: 80px;
+            color: #384951;
+          "
+        >
+          Product Nutrients
+        </div>
+        <mat-divider></mat-divider>
+        <div
+          class="mat-display-2"
+          style="
+            text-align: center;
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            color: #384951;
+          "
+        >
+          User driven nutrients on everyday products.
+        </div>
+      </div>
+    </div>
+  </section>
+  <mat-divider></mat-divider>
+  <!-- <div class="mat-display-4">Life Tracker</div> -->
+  <section>
+    <div
+      class="row"
+      data-aos="fade-right"
+      data-aos-duration="2000"
+      data-aos-anchor=".mat-display-2"
+      data-aos-delay="100"
+    >
+      <div class="col-md-6">
+        <div
+          class="mat-display-4"
+          style="
+            text-align: center;
+
+            font-family: 'Lora', serif;
+            padding-top: 80px;
+            color: #384951;
+          "
+        >
+          Shopping List
+        </div>
+        <mat-divider></mat-divider>
+        <div
+          class="mat-display-2"
+          style="
+            text-align: center;
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            color: #384951;
+          "
+        >
+          Manage and get ready before being in the store.
+        </div>
+      </div>
+      <div
+        class="col-md-6"
+        [ngClass]="{
+          active: shoppingList.length === 0
+        }"
+      >
+        <app-shopping-list></app-shopping-list>>
+      </div>
+    </div>
+  </section>
 </div>
