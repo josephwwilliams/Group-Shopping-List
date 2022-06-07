@@ -16,6 +16,7 @@ import { PopUpComponent } from './shared/pop-up/pop-up.component';
 import { ProductDetailsComponent } from './shopping/product-details/product-details.component';
 import { FitnessTrackingComponent } from './fitness-tracking/fitness-tracking.component';
 import { ShoppingComponent } from './shopping/shopping.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ShoppingComponent } from './shopping/shopping.component';
     BrowserAnimationsModule,
     MaterialModule,
     NgChartsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,28 @@
-.container {
+/* .container {
   display: flex;
   justify-content: space-around;
+} */
+section {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.active {
+  animation: wobble 0.75s alternate infinite;
+}
+@-webkit-keyframes wobble {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes wobble {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
 }

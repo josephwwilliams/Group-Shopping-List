@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { listOfItems } from '../shared/interface/page-request';
 import { Product } from '../shared/interface/product';
@@ -6,6 +6,8 @@ import { ProductInfoService } from '../shared/services/product-info.service';
 import { ShoppingListService } from '../shared/services/shopping-list.service';
 import { listOfBrands } from '../shared/interface/list-of-brands';
 import { ShoppingService } from '../shared/services/shopping.service';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-shopping',
@@ -13,11 +15,14 @@ import { ShoppingService } from '../shared/services/shopping.service';
   styleUrls: ['./shopping.component.css'],
 })
 export class ShoppingComponent implements OnInit {
+  @ViewChild('paginator') paginator: MatPaginator;
   showSpinner: boolean = false;
   durationInSeconds: number = 2;
+  count: number;
   shoppingItems: Product[];
   brands: {}[] = [];
-  pageSize: number = 25;
+  pageSizeOptions: number[] = [5, 10, 15, 20, 25, 30, 50];
+  pageSize: number = 10;
   page: number = 1;
   searchTerms: string = '';
   brand: string = '';
@@ -30,6 +35,7 @@ export class ShoppingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    AOS.init();
     this.searchForItems();
     if (this.shoppingService.listOfTop50Brands.length === 0) {
       this.productInfoService
@@ -41,7 +47,9 @@ export class ShoppingComponent implements OnInit {
           );
           this.brands = this.shoppingService.listOfTop50Brands;
         });
-    } else this.brands = this.shoppingService.listOfTop50Brands;
+    } else {
+      this.brands = this.shoppingService.listOfTop50Brands;
+    }
   }
   addToShoppingList(item: Product) {
     this.shoppingListService.addToShoppingList(item);
@@ -50,12 +58,36 @@ export class ShoppingComponent implements OnInit {
     this.showSpinner = true;
     this.productInfoService
       .getListOfItems(this.searchTerms, this.brand, this.pageSize, this.page)
-      .subscribe((res: listOfItems) => {
-        this.shoppingItems = res.products;
+      .subscribe((listofItems: listOfItems) => {
+        this.count = listofItems.count;
+        this.shoppingItems = listofItems.products;
         this.showSpinner = false;
       });
   }
   openProduct(item: Product) {
+    console.log(item);
     this.router.navigate([`product/nutrients/${item._id}`]);
+  }
+  pageEvent: PageEvent;
+  onPageChange(event: PageEvent) {
+    if (event.pageSize !== this.pageSize) {
+      this.pageSize = event.pageSize;
+      this.page = 1;
+      this.paginator.firstPage();
+      this.searchForItems();
+      return;
+    }
+    if (event.previousPageIndex > event.pageIndex) {
+      this.page = this.page - 1;
+      this.searchForItems();
+    } else if (event.previousPageIndex < event.pageIndex) {
+      this.page = this.page + 1;
+      this.searchForItems();
+    }
+  }
+  onChange() {
+    this.page = 1;
+    this.paginator.firstPage();
+    this.searchForItems();
   }
 }

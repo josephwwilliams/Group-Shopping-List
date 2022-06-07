@@ -8,6 +8,7 @@ import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-product-details',
@@ -17,9 +18,9 @@ import { ShoppingListService } from 'src/app/shared/services/shopping-list.servi
 export class ProductDetailsComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   showSpinner: boolean = false;
-  barcode: number;
+  barcode: string = '';
   selectedItem: Product;
-  data: [];
+  images: string[] = [];
 
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -41,7 +42,7 @@ export class ProductDetailsComponent implements OnInit {
     labels: [['Carbs (g) '], ['Fats (g) '], ['Protein (g) ']],
     datasets: [
       {
-        data: [19, 10, 3],
+        data: [3, 3, 3],
       },
     ],
   };
@@ -52,21 +53,29 @@ export class ProductDetailsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private productInfoService: ProductInfoService,
-    private http: HttpClient,
     private shoppingListService: ShoppingListService
   ) {}
 
   ngOnInit(): void {
+    AOS.init();
     if (!(this.route.snapshot.params['id'] === 'search')) {
       this.showSpinner = true;
       this.productInfoService
         .getItemInfo(this.route.snapshot.params['id'])
         .subscribe((infoItem: ItemResponse) => {
-          console.log(infoItem.product);
           this.barcode = this.route.snapshot.params['id'];
           this.selectedItem = infoItem.product;
           let dataSet = this.dataSet(infoItem);
           this.pieChartData.datasets = dataSet;
+          this.images = [];
+          if (infoItem.product.selected_images !== null || undefined) {
+            this.images.push(
+              infoItem.product.selected_images.front.display.en,
+              infoItem.product.selected_images.nutrition.display.en,
+              infoItem.product.selected_images.ingredients.display.en
+            );
+          }
+          console.log(this.images);
           this.showSpinner = false;
         });
     }
@@ -75,13 +84,21 @@ export class ProductDetailsComponent implements OnInit {
   getProductsByBarcode() {
     this.showSpinner = true;
     this.productInfoService
-      .getItemInfo(this.barcode)
+      .getItemInfo(this.barcode.toString())
       .subscribe((infoItem: ItemResponse) => {
-        console.log(infoItem.product);
         this.router.navigate([`product/nutrients/${this.barcode}`]);
         this.selectedItem = infoItem.product;
         let dataSet = this.dataSet(infoItem);
         this.pieChartData.datasets = dataSet;
+        this.images = [];
+
+        if (infoItem.product.selected_images !== null || undefined) {
+          this.images.push(
+            infoItem.product.selected_images.front.display.en,
+            infoItem.product.selected_images.nutrition.display.en,
+            infoItem.product.selected_images.ingredients.display.en
+          );
+        }
         this.showSpinner = false;
       });
   }
@@ -98,17 +115,17 @@ export class ProductDetailsComponent implements OnInit {
           infoItem.product.nutriments.proteins_serving,
         ],
         backgroundColor: [
-          'rgb(200, 184, 138, 0.5)',
-          'rgb(241, 221, 223, 0.5)',
-          'rgb(134, 176, 73, 0.5)',
+          'rgb(77, 130, 120, 0.5)',
+          'rgb(164, 208, 175, 0.5)',
+          'rgb(56, 73, 81, 0.5)',
         ],
         borderColor: ['white'],
-        pointBackgroundColor: ['#C8B88A', '#F1DDDF', '#86B049'],
+        pointBackgroundColor: ['#4d8278', '#A4D0AF', '#384951'],
         pointBorderColor: ['#fff'],
         pointHoverBackgroundColor: ['#fff'],
-        pointHoverBorderColor: ['#C8B88A', '#F1DDDF', '#86B049'],
-        hoverBackgroundColor: ['#C8B88A', '#F1DDDF', '#86B049'],
-        hoverBorderColor: ['#C8B88A', '#F1DDDF', '#86B049'],
+        pointHoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
+        hoverBackgroundColor: ['#4d8278', '#A4D0AF', '#384951'],
+        hoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
       },
     ];
   }
