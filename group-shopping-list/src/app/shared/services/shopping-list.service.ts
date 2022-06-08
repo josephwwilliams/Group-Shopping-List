@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { flatMap, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Product } from '../interface/product';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 

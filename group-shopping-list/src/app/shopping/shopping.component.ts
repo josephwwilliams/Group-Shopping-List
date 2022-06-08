@@ -26,6 +26,8 @@ export class ShoppingComponent implements OnInit {
   page: number = 1;
   searchTerms: string = '';
   brand: string = '';
+  placeholderImage: string =
+    'https://assets.materialup.com/uploads/b03b23aa-aa69-4657-aa5e-fa5fef2c76e8/preview.png';
 
   constructor(
     private shoppingListService: ShoppingListService,
@@ -35,6 +37,10 @@ export class ShoppingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // this.shoppingService.getPlaceholderImage().subscribe((res) => {
+    //   this.placeholderImage = res.results[0].urls.raw;
+    //   console.log(this.placeholderImage);
+    // });
     AOS.init();
     this.searchForItems();
     if (this.shoppingService.listOfTop50Brands.length === 0) {

@@ -12,7 +12,7 @@
             color: #384951;
           "
         >
-          Life Tracker
+          Health Starts With U
         </div>
         <mat-divider></mat-divider>
         <div
@@ -26,6 +26,22 @@
           "
         >
           Don't worry we'll do the counting for you.
+          <div class="row" style="justify-content: center">
+            <button
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-weight: bold;
+                margin-top: 20px;
+                width: fit-content;
+                background-color: #a4d0af;
+                transform: scale(1.5);
+              "
+              mat-raised-button
+              aria-label="Example icon button with a delete icon"
+            >
+              Create an account for free
+            </button>
+          </div>
         </div>
       </div>
       <div class="col-md-6">
@@ -176,8 +192,12 @@
           active: shoppingList.length === 0
         }"
       >
-        <app-shopping-list></app-shopping-list>>
+        <app-shopping-list></app-shopping-list>
       </div>
+      <mat-divider></mat-divider>
+      <section>
+        <app-fitness-tracking></app-fitness-tracking>
+      </section>
     </div>
   </section>
 </div>

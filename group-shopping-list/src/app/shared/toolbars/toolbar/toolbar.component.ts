@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { ShoppingListService } from '../services/shopping-list.service';
-import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.component';
+import { ShoppingListService } from '../../services/shopping-list.service';
+import { SettingsDialogComponent } from '../../settings-dialog/settings-dialog.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,6 +10,7 @@ import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.comp
   styleUrls: ['./toolbar.component.css'],
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
+  show = false;
   private subscriptions = new Subscription();
   shoppingList: number = 0;
   settingsOpen = false;
