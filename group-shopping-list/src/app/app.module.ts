@@ -21,6 +21,7 @@ import { SettingsDialogComponent } from './shared/settings-dialog/settings-dialo
 import { NoUserToolbarComponent } from './shared/toolbars/no-user-toolbar/no-user-toolbar.component';
 import { UserHomePageComponent } from './home/user-home-page/user-home-page.component';
 import { PlaceholderPipePipe } from './shared/pipes/placeholder-pipe.pipe';
+import { AuthComponent } from './shared/services/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PlaceholderPipePipe } from './shared/pipes/placeholder-pipe.pipe';
     NoUserToolbarComponent,
     UserHomePageComponent,
     PlaceholderPipePipe,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
