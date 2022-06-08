@@ -1,1 +1,114 @@
-<div class="container"></div>
+<div class="container">
+  <div class="row" style="margin: 20px">
+    <div class="col-md-6">
+      <label class="hoverable" for="fileInput">
+        <img
+          style="
+            display: block;
+            margin: 0 auto;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+          "
+          [src]="url ? url : '/assets/images/placeholders/userPlaceholder.png'"
+        />
+        <div class="hover-text">Choose file</div>
+        <div class="background"></div>
+      </label>
+      <input id="fileInput" type="file" (change)="onSelectFile($event)" />
+      <!-- <img
+        style="
+          display: block;
+          margin: 0 auto;
+          height: 50px;
+          width: auto;
+          border-radius: 50%;
+        "
+        src="/assets/images/placeholders/userPlaceholder.png"
+        alt=""
+      />
+    </div> -->
+    </div>
+    <div class="col-md-6">
+      <div class="row mat-headline displaySubheading">Settings</div>
+    </div>
+  </div>
+  <div class="row">
+    <form
+      style="text-align: center; overflow: hidden"
+      #settingsForm="ngForm"
+      (ngSubmit)="onSubmit(settingsForm)"
+    >
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            [(ngModel)]="firstName"
+            matInput
+            type="email"
+            id="firstName"
+            ngModel
+            name="firstName"
+            required
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            [(ngModel)]="lastName"
+            matInput
+            type="email"
+            id="lastName"
+            ngModel
+            name="lastName"
+            required
+          />
+        </mat-form-field>
+      </p>
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select [(ngModel)]="selectedGender" name="gender">
+          <mat-option *ngFor="let gender of genders" [value]="gender">{{
+            gender
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="row" style="justify-content: center; margin: 20px">
+        <div class="col-md-12">
+          <button
+            style="margin: 10px"
+            mat-raised-button
+            class="signUpButton"
+            type="submit"
+            [disabled]="!settingsForm.dirty || !settingsForm.valid || changed"
+          >
+            {{ changed ? "Changes Saved" : "Save Changes" }}
+          </button>
+
+          <!-- <button
+            style="margin: 10px"
+            mat-raised-button
+            color="warn"
+            type="button"
+            (click)="summonerName.value = username"
+          >
+            Reset
+          </button> -->
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="row" style="justify-content: center">
+        <button
+          type="button"
+          class="signUpButton"
+          mat-raised-button
+          aria-label="Sign Out button"
+        >
+          Sign Out <span class="material-icons"> logout </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

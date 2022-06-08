@@ -1,1 +1,71 @@
-
+.displaySubheading {
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #384951;
+}
+.signUpButton {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+  width: fit-content;
+  background-color: #a4d0af;
+}
+.hoverable {
+  position: relative;
+  cursor: pointer;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.hoverable .hover-text {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: #384951;
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.hoverable .background {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  z-index: 1;
+}
+.hoverable:hover .hover-text {
+  display: block;
+}
+.hoverable:hover .background {
+  display: block;
+}
+input.mat-input-element {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+#fileInput {
+  display: none;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #a4d0af;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #384951 !important;
+}
+::ng-deep.mat-form-field-ripple {
+  background-color: green !important;
+}
+::ng-deep
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline {
+  color: #4d8278;
+}

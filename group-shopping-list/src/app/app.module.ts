@@ -19,6 +19,8 @@ import { ShoppingComponent } from './shopping/shopping.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SettingsDialogComponent } from './shared/settings-dialog/settings-dialog.component';
 import { NoUserToolbarComponent } from './shared/toolbars/no-user-toolbar/no-user-toolbar.component';
+import { UserHomePageComponent } from './home/user-home-page/user-home-page.component';
+import { PlaceholderPipePipe } from './shared/pipes/placeholder-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { NoUserToolbarComponent } from './shared/toolbars/no-user-toolbar/no-use
     ShoppingComponent,
     SettingsDialogComponent,
     NoUserToolbarComponent,
+    UserHomePageComponent,
+    PlaceholderPipePipe,
   ],
   imports: [
     BrowserModule,

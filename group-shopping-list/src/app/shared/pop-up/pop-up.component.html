@@ -1,11 +1,4 @@
-<div
-  class="container"
-  style="
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
-  "
->
+<div class="container" *ngIf="!data.copied">
   <div class="div" *ngIf="data.message">
     <div class="row" style="text-align: center">
       {{ data.message
@@ -26,5 +19,10 @@
         ? data.removedItem.product_name
         : "Product ") + " removed from shopping list!"
     }}
+  </div>
+</div>
+<div class="container">
+  <div *ngIf="data.copied">
+    {{ data.copied }}
   </div>
 </div>

@@ -13,6 +13,7 @@ import { Product } from '../shared/interface/product';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  show: boolean = true;
   shoppingList: Product[] = [];
   title = 'group-shopping-list';
   constructor(private shoppingListService: ShoppingListService) {}

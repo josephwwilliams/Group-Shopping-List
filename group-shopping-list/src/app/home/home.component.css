@@ -6,6 +6,28 @@ section {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+.displayHeading {
+  text-align: center;
+
+  font-family: "Lora", serif;
+  padding-top: 80px;
+  color: #384951;
+}
+.displaySubheading {
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #384951;
+}
+.signUpButton {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+  width: fit-content;
+  background-color: #a4d0af;
+  transform: scale(1.5);
+}
 .active {
   animation: wobble 0.75s alternate infinite;
 }
