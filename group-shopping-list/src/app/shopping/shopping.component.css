@@ -12,6 +12,13 @@
   background-color: #6d9c8a;
   color: white;
 }
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
 :host ::ng-deep .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: #6d9c8a;

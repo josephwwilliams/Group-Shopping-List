@@ -10,13 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { HomeComponent } from './home/home.component';
 import { SideNavComponent } from './shared/side-nav/side-nav.component';
-import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import { ToolbarComponent } from './shared/toolbars/toolbar/toolbar.component';
 import { ShoppingListComponent } from './shopping/shopping-list/shopping-list.component';
 import { PopUpComponent } from './shared/pop-up/pop-up.component';
 import { ProductDetailsComponent } from './shopping/product-details/product-details.component';
 import { FitnessTrackingComponent } from './fitness-tracking/fitness-tracking.component';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SettingsDialogComponent } from './shared/settings-dialog/settings-dialog.component';
+import { NoUserToolbarComponent } from './shared/toolbars/no-user-toolbar/no-user-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductDetailsComponent,
     FitnessTrackingComponent,
     ShoppingComponent,
+    SettingsDialogComponent,
+    NoUserToolbarComponent,
   ],
   imports: [
     BrowserModule,

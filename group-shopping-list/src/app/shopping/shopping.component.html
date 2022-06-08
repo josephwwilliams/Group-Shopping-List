@@ -60,7 +60,17 @@
         "
         *ngFor="let item of shoppingItems"
       >
-        <mat-card-header>
+        <mat-card-header class="cardHeader">
+          <img
+            mat-card-image
+            class="mx-auto img-fluid"
+            style="max-height: 150px; width: auto; cursor: pointer"
+            [src]="item.image_url ? item.image_url : placeholderImage"
+            alt=""
+            (click)="openProduct(item)"
+          />
+        </mat-card-header>
+        <mat-card-content>
           <h1
             class="row"
             style="
@@ -70,30 +80,12 @@
             "
             (click)="openProduct(item)"
           >
-            {{ item.product_name ? item.product_name : item.product_name_fr }}
+            {{
+              item.abbreviated_product_name
+                ? item.abbreviated_product_name
+                : item.product_name
+            }}
           </h1>
-        </mat-card-header>
-        <img
-          mat-card-image
-          class="mx-auto d-block"
-          style="
-            max-height: 100px;
-            width: auto;
-            max-width: 100px;
-            border: 2px solid rgb(211, 211, 211);
-            border-radius: 4px;
-            cursor: pointer;
-          "
-          [src]="
-            item.image_url
-              ? item.image_url
-              : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
-          "
-          alt=""
-          (click)="openProduct(item)"
-        />
-        <mat-card-content>
-          <p></p>
         </mat-card-content>
         <mat-card-actions>
           <button
