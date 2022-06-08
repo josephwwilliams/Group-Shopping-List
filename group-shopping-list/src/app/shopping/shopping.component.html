@@ -61,6 +61,18 @@
         *ngFor="let item of shoppingItems"
       >
         <mat-card-header class="cardHeader">
+          <!-- <img
+            mat-card-image
+            class="mx-auto img-fluid"
+            style="max-height: 150px; width: auto; cursor: pointer"
+            [src]="
+              item.image_url
+                ? item.image_url
+                : (item.food_groups_tags | placeholderPipe | async)
+            "
+            alt=""
+            (click)="openProduct(item)"
+          /> -->
           <img
             mat-card-image
             class="mx-auto img-fluid"
@@ -103,7 +115,7 @@
     </div>
 
     <div *ngIf="showSpinner" class="itemContainer">
-      <mat-spinner color="warn"></mat-spinner>
+      <mat-spinner></mat-spinner>
     </div>
   </div>
   <div class="row">

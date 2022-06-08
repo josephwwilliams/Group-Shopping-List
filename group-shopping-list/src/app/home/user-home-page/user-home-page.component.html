@@ -1,0 +1,112 @@
+<div class="container">
+  <div
+    class="row"
+    style="text-align: center"
+    data-aos="fade-down"
+    data-aos-duration="2000"
+  >
+    <div class="mat-display-4 displayHeading">
+      Welcome {{ oldUser ? "Back" : "" }} Michael!
+    </div>
+    <img
+      style="
+        display: block;
+        margin: 0 auto;
+        height: 150px;
+        width: auto;
+        border-radius: 50%;
+      "
+      src="/assets/images/placeholders/userPlaceholder.png"
+      alt=""
+    />
+    <div class="mat-headline displaySubheading">User since {{ date }}</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row">
+    <div
+      class="col-md-6"
+      data-aos="fade-right"
+      data-aos-duration="1500"
+      data-aos-anchor=".mat-headline"
+    >
+      <div class="mat-display-2 displayHeading">Previous Shopping List</div>
+      <div class="mat-headline displaySubheading">
+        <div class="row" style="justify-content: center">
+          <button
+            class="signUpButton"
+            mat-raised-button
+            aria-label="Example icon button with a delete icon"
+            [disabled]="shoppingList.length === 0"
+            (click)="copied()"
+          >
+            Copy your previous list
+            <span class="material-icons"> content_copy </span>
+          </button>
+        </div>
+      </div>
+      <mat-card
+        *ngFor="let item of shoppingList; let i = index"
+        (click)="openProduct(item)"
+        style="margin: 5px"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+        data-aos-anchor=".mat-display-2"
+      >
+        <div class="row">
+          <div class="col-md-2">
+            <img
+              style="max-width: 30px; height: auto"
+              [src]="
+                item.image_url
+                  ? item.image_url
+                  : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
+              "
+            />
+          </div>
+          <div class="col-md-9">
+            {{ item.product_name ? item.product_name : item.product_name_fr }}
+          </div>
+        </div>
+      </mat-card>
+      <div
+        *ngIf="shoppingList.length === 0"
+        class="mat-display-2"
+        style="
+          text-align: center;
+          margin-top: 10px;
+          font-family: 'Poppins', sans-serif;
+          font-weight: bold;
+          color: #384951;
+        "
+      >
+        No previous list!
+      </div>
+    </div>
+    <div
+      class="col-md-6"
+      data-aos="fade-left"
+      data-aos-duration="1500"
+      data-aos-anchor=".mat-headline"
+      style="text-align: center"
+    >
+      <div class="mat-display-2 displayHeading">Current Goals</div>
+      <mat-list>
+        <mat-list-item
+          class="mat-headline displaySubheading"
+          style="border: 1px solid black; text-align: center"
+        >
+          2,000 Calories a day
+        </mat-list-item>
+        <mat-list-item class="mat-headline displaySubheading">
+          Carbs: 45-65%
+        </mat-list-item>
+        <mat-list-item class="mat-headline displaySubheading">
+          Fats: 20-35%
+        </mat-list-item>
+        <mat-list-item class="mat-headline displaySubheading">
+          Protiens: 30-35%
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</div>

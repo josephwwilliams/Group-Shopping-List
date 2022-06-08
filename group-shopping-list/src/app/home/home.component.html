@@ -1,43 +1,17 @@
-<div class="container">
+<div class="container" *ngIf="show">
   <section>
     <div class="row" data-aos="fade-down" data-aos-duration="3000">
       <div class="col-md-6">
-        <div
-          class="mat-display-4"
-          style="
-            text-align: center;
-
-            font-family: 'Lora', serif;
-            padding-top: 80px;
-            color: #384951;
-          "
-        >
-          Health Starts With U
-        </div>
+        <div class="mat-display-4 displayHeading">Health Starts With U</div>
         <mat-divider></mat-divider>
-        <div
-          class="mat-display-2"
-          style="
-            text-align: center;
-            margin-top: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-            color: #384951;
-          "
-        >
+        <div class="mat-display-2 displaySubheading">
           Don't worry we'll do the counting for you.
           <div class="row" style="justify-content: center">
             <button
-              style="
-                font-family: 'Poppins', sans-serif;
-                font-weight: bold;
-                margin-top: 20px;
-                width: fit-content;
-                background-color: #a4d0af;
-                transform: scale(1.5);
-              "
+              class="signUpButton"
               mat-raised-button
               aria-label="Example icon button with a delete icon"
+              (click)="show = !show"
             >
               Create an account for free
             </button>
@@ -68,14 +42,8 @@
         data-aos-anchor=".mat-display-2"
       >
         <div
-          class="mat-headline active"
-          style="
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-            color: #384951;
-            cursor: pointer;
-          "
+          class="mat-headline active displaySubheading"
+          style="cursor: pointer"
           [routerLink]="'../product/nutrients/0009800895250'"
         >
           Nutella hazelnut spread (Per Serving)
@@ -121,29 +89,9 @@
         data-aos-duration="3000"
         data-aos-anchor=".mat-display-2"
       >
-        <div
-          class="mat-display-4"
-          style="
-            text-align: center;
-
-            font-family: 'Lora', serif;
-            padding-top: 80px;
-            color: #384951;
-          "
-        >
-          Product Nutrients
-        </div>
+        <div class="mat-display-4 displayHeading">Product Nutrients</div>
         <mat-divider></mat-divider>
-        <div
-          class="mat-display-2"
-          style="
-            text-align: center;
-            margin-top: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-            color: #384951;
-          "
-        >
+        <div class="mat-display-2 displaySubheading">
           User driven nutrients on everyday products.
         </div>
       </div>
@@ -160,29 +108,9 @@
       data-aos-delay="100"
     >
       <div class="col-md-6">
-        <div
-          class="mat-display-4"
-          style="
-            text-align: center;
-
-            font-family: 'Lora', serif;
-            padding-top: 80px;
-            color: #384951;
-          "
-        >
-          Shopping List
-        </div>
+        <div class="mat-display-4 displayHeading">Shopping List</div>
         <mat-divider></mat-divider>
-        <div
-          class="mat-display-2"
-          style="
-            text-align: center;
-            margin-top: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-            color: #384951;
-          "
-        >
+        <div class="mat-display-2 displaySubheading">
           Manage and get ready before being in the store.
         </div>
       </div>
@@ -201,3 +129,6 @@
     </div>
   </section>
 </div>
+<section *ngIf="!show">
+  <app-user-home-page></app-user-home-page>
+</section>
