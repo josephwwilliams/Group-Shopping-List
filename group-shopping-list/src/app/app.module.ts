@@ -19,6 +19,7 @@ import { ShoppingComponent } from './shopping/shopping.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SettingsDialogComponent } from './shared/settings-dialog/settings-dialog.component';
 import { NoUserToolbarComponent } from './shared/toolbars/no-user-toolbar/no-user-toolbar.component';
+import { AuthComponent } from './shared/services/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NoUserToolbarComponent } from './shared/toolbars/no-user-toolbar/no-use
     ShoppingComponent,
     SettingsDialogComponent,
     NoUserToolbarComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
