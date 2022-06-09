@@ -1,8 +1,10 @@
-<div class="container" *ngIf="show">
+<div class="container" *ngIf="!loggedIn">
   <section>
     <div class="row" data-aos="fade-down" data-aos-duration="3000">
       <div class="col-md-6">
-        <div class="mat-display-4 displayHeading">Health Starts With U</div>
+        <div class="mat-display-4 displayHeading">
+          Health Starts With <span style="color: #86242a">U</span>
+        </div>
         <mat-divider></mat-divider>
         <div class="mat-display-2 displaySubheading">
           Don't worry we'll do the counting for you.
@@ -211,6 +213,6 @@
     <app-fitness-tracking></app-fitness-tracking>
   </section>
 </div>
-<section *ngIf="!show">
+<section *ngIf="loggedIn">
   <app-user-home-page></app-user-home-page>
 </section>

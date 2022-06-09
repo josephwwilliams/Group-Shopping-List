@@ -1,18 +1,10 @@
-<app-toolbar *ngIf="!show"></app-toolbar>
-<app-no-user-toolbar *ngIf="show"></app-no-user-toolbar>
+<app-toolbar *ngIf="loggedIn"></app-toolbar>
+<app-no-user-toolbar *ngIf="!loggedIn"></app-no-user-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav #sideNav mode="side" opened *ngIf="!show">
+  <mat-sidenav #sideNav mode="side" opened *ngIf="loggedIn">
     <app-side-nav></app-side-nav>
   </mat-sidenav>
   <mat-sidenav-content>
-    <button
-      style="width: fit-content; background-color: #a4d0af; margin-right: 30px"
-      mat-raised-button
-      aria-label="Example login button"
-      (click)="show = !show"
-    >
-      Toggle User
-    </button>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

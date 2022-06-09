@@ -6,6 +6,8 @@ import * as AOS from 'aos';
 import { interval } from 'rxjs';
 import { ShoppingListService } from '../shared/services/shopping-list.service';
 import { Product } from '../shared/interface/product';
+import { AuthService } from '../shared/services/auth/auth.service';
+import { User } from '../shared/services/auth/user.model';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +15,15 @@ import { Product } from '../shared/interface/product';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  loggedIn: boolean = false;
   pieChartDisplayProduct: string = 'Nutella hazelnut spread (Per Serving)';
   current: number = 0;
-  show: boolean = true;
   shoppingList: Product[] = [];
   title = 'group-shopping-list';
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(
+    private shoppingListService: ShoppingListService,
+    private authService: AuthService
+  ) {}
   foodImages: string[] = [
     'https://images.pexels.com/photos/1985775/pexels-photo-1985775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     'https://images.pexels.com/photos/1346295/pexels-photo-1346295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
@@ -42,8 +47,12 @@ export class HomeComponent implements OnInit {
     'https://images.pexels.com/photos/6454060/pexels-photo-6454060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   ];
   ngOnInit(): void {
+    this.authService.user.subscribe((user: User) => {
+      this.loggedIn = !!user;
+    });
     AOS.init();
     let dataSet = this.dataSet();
+
     this.pieChartData.datasets = dataSet;
     this.shoppingList = this.shoppingListService.shoppingList;
     interval(7000).subscribe(() => {

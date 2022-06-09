@@ -22,7 +22,6 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string) {
@@ -70,7 +69,6 @@ export class AuthService {
         })
       );
   }
-
 
   autoLogin() {
     const userData: {
@@ -124,7 +122,7 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
-    localStorage.setItem('userInfo', JSON.stringify(user));
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 
   private handleError(errorRes: HttpErrorResponse) {
@@ -145,5 +143,4 @@ export class AuthService {
     }
     return throwError(errorMessage);
   }
-
 }
