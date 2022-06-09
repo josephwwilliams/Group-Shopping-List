@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap } from 'rxjs';
+
 import { throwError } from 'rxjs';
 import { User } from './user.model';
 
@@ -19,6 +21,7 @@ export interface AuthResponseData {
 export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
+
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -67,6 +70,7 @@ export class AuthService {
         })
       );
   }
+
 
   autoLogin() {
     const userData: {
@@ -141,4 +145,5 @@ export class AuthService {
     }
     return throwError(errorMessage);
   }
+
 }

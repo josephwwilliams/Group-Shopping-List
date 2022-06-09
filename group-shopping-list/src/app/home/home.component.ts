@@ -13,24 +13,47 @@ import { Product } from '../shared/interface/product';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  pieChartDisplayProduct: string = 'Nutella hazelnut spread (Per Serving)';
+  current: number = 0;
   show: boolean = true;
   shoppingList: Product[] = [];
   title = 'group-shopping-list';
   constructor(private shoppingListService: ShoppingListService) {}
-  current: number = 0;
+  foodImages: string[] = [
+    'https://images.pexels.com/photos/1985775/pexels-photo-1985775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1346295/pexels-photo-1346295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1563636/pexels-photo-1563636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1660037/pexels-photo-1660037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1640776/pexels-photo-1640776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1765597/pexels-photo-1765597.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1580464/pexels-photo-1580464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1682453/pexels-photo-1682453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+  ];
+  workoutImages: string[] = [
+    'https://images.pexels.com/photos/949129/pexels-photo-949129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/897064/pexels-photo-897064.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/703014/pexels-photo-703014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/3756042/pexels-photo-3756042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/6039243/pexels-photo-6039243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/4754008/pexels-photo-4754008.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/6456144/pexels-photo-6456144.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    'https://images.pexels.com/photos/6454060/pexels-photo-6454060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  ];
   ngOnInit(): void {
     AOS.init();
     let dataSet = this.dataSet();
     this.pieChartData.datasets = dataSet;
     this.shoppingList = this.shoppingListService.shoppingList;
     interval(7000).subscribe(() => {
-      if (this.current === 2) {
+      if (this.current > 2) {
         this.current = 0;
       }
       this.pieChartData.datasets = this.dataSets[this.current];
+      this.pieChartDisplayProduct = this.pieChartProducts[this.current];
       this.current += 1;
       this.chart?.update();
-      AOS.refresh();
     });
   }
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
@@ -47,7 +70,7 @@ export class HomeComponent implements OnInit {
     },
   };
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: [['Carbs (g) '], ['Fats (g) '], ['Protein (g) ']],
+    labels: [['Carbs (g) '], ['Fats (g) '], ['Proteins (g) ']],
     datasets: [
       {
         data: [300, 500, 100],
@@ -59,7 +82,7 @@ export class HomeComponent implements OnInit {
   dataSet() {
     return [
       {
-        data: [55, 15, 30],
+        data: [23, 12, 2],
         backgroundColor: [
           'rgb(77, 130, 120, 0.5)',
           'rgb(164, 208, 175, 0.5)',
@@ -78,7 +101,7 @@ export class HomeComponent implements OnInit {
   dataSets = [
     [
       {
-        data: [45, 20, 35],
+        data: [24, 3, 2],
         backgroundColor: [
           'rgb(77, 130, 120, 0.5)',
           'rgb(164, 208, 175, 0.5)',
@@ -95,7 +118,7 @@ export class HomeComponent implements OnInit {
     ],
     [
       {
-        data: [40, 30, 30],
+        data: [7, 15, 7],
         backgroundColor: [
           'rgb(77, 130, 120, 0.5)',
           'rgb(164, 208, 175, 0.5)',
@@ -112,7 +135,7 @@ export class HomeComponent implements OnInit {
     ],
     [
       {
-        data: [55, 15, 30],
+        data: [23, 12, 2],
         backgroundColor: [
           'rgb(77, 130, 120, 0.5)',
           'rgb(164, 208, 175, 0.5)',
@@ -127,6 +150,11 @@ export class HomeComponent implements OnInit {
         hoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
       },
     ],
+  ];
+  pieChartProducts: string[] = [
+    'Great Value Graham Crackers (Per Serving)',
+    'Kroger Creamy Peanut Butter (Per Serving)',
+    'Nutella Hazelnut Spread (Per Serving)',
   ];
   ELEMENT_DATA = [
     { position: 1, name: 'Carbohydrates', weight: 23, symbol: 'g' },
