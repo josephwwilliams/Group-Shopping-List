@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -5,15 +6,19 @@ import { Observable } from 'rxjs';
 import { AuthResponseData, AuthService } from './auth.service';
 import * as AOS from 'aos';
 
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
+
   styleUrls: ['./auth.component.css'],
+
 })
 export class AuthComponent implements OnInit {
   isLoggedIn = true;
   isLoading = false;
   error: string = null;
+
 
   constructor(
     private authService: AuthService,
@@ -29,6 +34,7 @@ export class AuthComponent implements OnInit {
     }
     AOS.init();
   }
+
   onSwitch() {
     this.isLoggedIn = !this.isLoggedIn;
   }
@@ -40,7 +46,9 @@ export class AuthComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
+
     let authObs: Observable<AuthResponseData>;
+
 
     this.isLoading = true;
     if (this.isLoggedIn) {
@@ -53,7 +61,9 @@ export class AuthComponent implements OnInit {
       (resData) => {
         console.log(resData);
         this.isLoading = false;
-        this.router.navigate(['home/user-homepage']);
+
+        this.router.navigate(['']);
+
       },
       (errorMessage) => {
         console.log(errorMessage);
