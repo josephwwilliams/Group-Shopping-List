@@ -8,16 +8,37 @@ import { ShoppingComponent } from './shopping/shopping.component';
 import { SettingsDialogComponent } from './shared/settings-dialog/settings-dialog.component';
 import { AuthComponent } from './shared/services/auth/auth.component';
 import { UserHomePageComponent } from './home/user-home-page/user-home-page.component';
+import { AuthGuard } from './shared/services/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'shopping', component: ShoppingComponent },
-  { path: 'shopping-list', component: ShoppingListComponent },
-  { path: 'product/nutrients/:id', component: ProductDetailsComponent },
-  { path: 'fitness', component: FitnessTrackingComponent },
-  { path: 'home/settings', component: SettingsDialogComponent },
-  { path: 'home/user-homepage', component: UserHomePageComponent },
+  { path: 'shopping', component: ShoppingComponent, canActivate: [AuthGuard] },
+  {
+    path: 'shopping-list',
+    component: ShoppingListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'product/nutrients/:id',
+    component: ProductDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'fitness',
+    component: FitnessTrackingComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'home/settings',
+    component: SettingsDialogComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'home/user-homepage',
+    component: UserHomePageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'home/account/:id', component: AuthComponent },
 ];
 
