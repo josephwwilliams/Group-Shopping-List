@@ -103,10 +103,12 @@
       <mat-divider></mat-divider>
       <div class="row" style="justify-content: center">
         <button
+          mat-dialog-close
           type="button"
           class="signUpButton"
           mat-raised-button
           aria-label="Sign Out button"
+          (click)="logout()"
         >
           Sign Out <span class="material-icons"> logout </span>
         </button>

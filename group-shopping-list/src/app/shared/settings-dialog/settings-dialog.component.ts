@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-settings-dialog',
@@ -15,7 +16,7 @@ export class SettingsDialogComponent implements OnInit {
 
   genders: string[] = ['Male', 'Female', 'Non-Binary', 'I Prefer To Not Say'];
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
   url;
   ngOnInit(): void {}
   onSelectFile(event) {
@@ -40,5 +41,9 @@ export class SettingsDialogComponent implements OnInit {
     setTimeout(() => {
       this.changed = false;
     }, 2000);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
