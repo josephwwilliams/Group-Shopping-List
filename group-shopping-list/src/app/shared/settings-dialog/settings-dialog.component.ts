@@ -13,7 +13,7 @@ export class SettingsDialogComponent implements OnInit {
   lastName: string = 'Williams';
   selectedGender: string = 'Male';
 
-  genders: string[] = ['Male', 'Female', 'Other'];
+  genders: string[] = ['Male', 'Female', 'Non-Binary', 'I Prefer To Not Say'];
 
   constructor() {}
   url;

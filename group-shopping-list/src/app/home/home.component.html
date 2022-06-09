@@ -11,7 +11,7 @@
               class="signUpButton"
               mat-raised-button
               aria-label="Example icon button with a delete icon"
-              (click)="show = !show"
+              routerLink="account/signup"
             >
               Create an account for free
             </button>
@@ -20,6 +20,12 @@
       </div>
       <div class="col-md-6">
         <div class="chart">
+          <div class="row" style="margin-top: 50px">
+            <div class="mat-title displaySubheading">
+              {{ pieChartDisplayProduct }}
+              <mat-divider s></mat-divider>
+            </div>
+          </div>
           <canvas
             baseChart
             [data]="pieChartData"
@@ -32,6 +38,38 @@
       </div>
     </div>
   </section>
+  <mat-divider></mat-divider>
+
+  <ngb-carousel
+    *ngIf="foodImages"
+    style="width: auto; margin: 30px"
+    data-aos="fade-left"
+    data-aos-duration="3000"
+    data-aos-anchor=".mat-display-2"
+  >
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="foodImages[0]" alt="Random first slide" />
+        <img class="secondImg" [src]="foodImages[1]" alt="Random first slide" />
+        <img [src]="foodImages[2]" alt="Random first slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="foodImages[3]" alt="Random first slide" />
+        <img class="secondImg" [src]="foodImages[4]" alt="Random first slide" />
+        <img [src]="foodImages[5]" alt="Random first slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="foodImages[6]" alt="Random first slide" />
+        <img class="secondImg" [src]="foodImages[7]" alt="Random first slide" />
+        <img [src]="foodImages[8]" alt="Random first slide" />
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
   <mat-divider></mat-divider>
   <section>
     <div class="row">
@@ -122,11 +160,55 @@
       >
         <app-shopping-list></app-shopping-list>
       </div>
-      <mat-divider></mat-divider>
-      <section>
-        <app-fitness-tracking></app-fitness-tracking>
-      </section>
     </div>
+  </section>
+  <mat-divider></mat-divider>
+
+  <ngb-carousel
+    *ngIf="workoutImages"
+    style="width: auto; margin: 30px"
+    data-aos="fade-left"
+    data-aos-duration="3000"
+    data-aos-anchor=".mat-display-2"
+  >
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="workoutImages[0]" alt="Random first slide" />
+        <img
+          class="secondImg"
+          [src]="workoutImages[1]"
+          alt="Random first slide"
+        />
+        <img [src]="workoutImages[2]" alt="Random first slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="workoutImages[3]" alt="Random first slide" />
+        <img
+          class="secondImg"
+          [src]="workoutImages[4]"
+          alt="Random first slide"
+        />
+        <img [src]="workoutImages[5]" alt="Random first slide" />
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="workoutImages[6]" alt="Random first slide" />
+        <img
+          class="secondImg"
+          [src]="workoutImages[7]"
+          alt="Random first slide"
+        />
+        <img [src]="workoutImages[8]" alt="Random first slide" />
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+  <mat-divider></mat-divider>
+  <section>
+    <app-fitness-tracking></app-fitness-tracking>
   </section>
 </div>
 <section *ngIf="!show">
