@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row" style="margin: 20px">
+  <div class="row" style="margin: 20px; display: flex; align-items: center">
     <div class="col-md-6">
       <label class="hoverable" for="fileInput">
         <img
@@ -70,9 +70,11 @@
       <mat-form-field appearance="outline">
         <mat-label>Gender</mat-label>
         <mat-select [(ngModel)]="selectedGender" name="gender">
-          <mat-option *ngFor="let gender of genders" [value]="gender">{{
-            gender
-          }}</mat-option>
+          <mat-option
+            *ngFor="let gender of genders; let i = index"
+            [value]="gender"
+            >{{ gender }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
       <div class="row" style="justify-content: center; margin: 20px">

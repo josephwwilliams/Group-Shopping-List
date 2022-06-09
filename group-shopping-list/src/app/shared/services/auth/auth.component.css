@@ -1,0 +1,36 @@
+.displaySubheading {
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #384951;
+}
+.signUpButton {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+  width: fit-content;
+  background-color: #a4d0af;
+}
+input.mat-input-element {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #a4d0af;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #384951 !important;
+}
+::ng-deep.mat-form-field-ripple {
+  background-color: green !important;
+}
+::ng-deep
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline {
+  color: #4d8278;
+}
+:host ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #6d9c8a;
+}

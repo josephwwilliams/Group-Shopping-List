@@ -6,6 +6,8 @@ import { ShoppingListComponent } from './shopping/shopping-list/shopping-list.co
 import { ProductDetailsComponent } from './shopping/product-details/product-details.component';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { SettingsDialogComponent } from './shared/settings-dialog/settings-dialog.component';
+import { AuthComponent } from './shared/services/auth/auth.component';
+import { UserHomePageComponent } from './home/user-home-page/user-home-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'product/nutrients/:id', component: ProductDetailsComponent },
   { path: 'fitness', component: FitnessTrackingComponent },
   { path: 'home/settings', component: SettingsDialogComponent },
+  { path: 'home/user-homepage', component: UserHomePageComponent },
+  { path: 'home/account/:id', component: AuthComponent },
 ];
 
 @NgModule({
