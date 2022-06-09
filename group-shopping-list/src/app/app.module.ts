@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
@@ -22,6 +22,7 @@ import { NoUserToolbarComponent } from './shared/toolbars/no-user-toolbar/no-use
 import { UserHomePageComponent } from './home/user-home-page/user-home-page.component';
 import { PlaceholderPipePipe } from './shared/pipes/placeholder-pipe.pipe';
 import { AuthComponent } from './shared/services/auth/auth.component';
+import { AuthInterceptorService } from './shared/services/auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { AuthComponent } from './shared/services/auth/auth.component';
     NoUserToolbarComponent,
     UserHomePageComponent,
     PlaceholderPipePipe,
-    AuthComponent
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +51,13 @@ import { AuthComponent } from './shared/services/auth/auth.component';
     NgChartsModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

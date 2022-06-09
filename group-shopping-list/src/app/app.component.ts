@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as AOS from 'aos';
+import { AuthService } from './shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,9 @@ import * as AOS from 'aos';
 export class AppComponent implements OnInit {
   title = 'group-shopping-list';
   show = false;
-  constructor() {}
+  constructor(private authService: AuthService) {}
   ngOnInit(): void {
     AOS.init();
+    this.authService.autoLogin();
   }
 }
