@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap } from 'rxjs';
@@ -19,6 +20,7 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  form: NgForm;
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
@@ -115,13 +117,14 @@ export class AuthService {
 
   private handleAuth(
     email: string,
-    token: string,
     userId: string,
+    token: string,
     expiresIn: number
   ) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
+    this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
