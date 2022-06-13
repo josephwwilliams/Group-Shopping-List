@@ -1,10 +1,18 @@
 <app-toolbar *ngIf="loggedIn"></app-toolbar>
 <app-no-user-toolbar *ngIf="!loggedIn"></app-no-user-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav #sideNav mode="side" opened *ngIf="loggedIn">
+  <mat-sidenav
+    #sideNav
+    mode="side"
+    opened
+    *ngIf="loggedIn"
+    style="background-color: #4d8278"
+    data-aos="fade-right"
+    data-aos-duration="1000"
+  >
     <app-side-nav></app-side-nav>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <router-outlet style="padding: 20px"></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

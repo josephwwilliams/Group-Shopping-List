@@ -10,9 +10,10 @@
             matTooltipPosition="above"
           >
             <mat-label>{{
-              brands.length === 0 ? "Loading brands..." : "Brands"
+              brands.length === 0 ? "Loading brands..." : brand
             }}</mat-label>
             <mat-select
+              [value]="brand"
               [(ngModel)]="brand"
               name="brand"
               [disabled]="brands.length === 0"

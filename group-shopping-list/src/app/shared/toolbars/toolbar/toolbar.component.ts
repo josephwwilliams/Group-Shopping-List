@@ -1,6 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import {
+  FormResponse,
+  UserStorageService,
+} from '../../services/auth/user-storage.service';
 import { ShoppingListService } from '../../services/shopping-list.service';
 import { SettingsDialogComponent } from '../../settings-dialog/settings-dialog.component';
 
@@ -19,7 +23,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
   constructor(
     private shoppingListService: ShoppingListService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userStorage: UserStorageService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +32,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       this.shoppingListService.changeToShoppingList.subscribe(
         (addOrSubtract: number) => (this.shoppingList += addOrSubtract)
       );
+    this.userStorage
+      .fetchUserFromFireBase()
+      .subscribe((currentUser: FormResponse) => {
+        this.userStorage.currentUser = currentUser;
+        console.log(this.userStorage.currentUser);
+      });
   }
 
   open() {

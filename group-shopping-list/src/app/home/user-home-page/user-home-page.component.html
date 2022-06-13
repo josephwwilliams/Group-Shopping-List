@@ -6,7 +6,7 @@
     data-aos-duration="2000"
   >
     <div class="mat-display-4 displayHeading">
-      Welcome {{ oldUser ? "Back" : "" }} Michael!
+      Welcome {{ oldUser ? "Back" : "" }} {{ userName }}!
     </div>
     <img
       style="
@@ -16,7 +16,11 @@
         width: auto;
         border-radius: 50%;
       "
-      src="/assets/images/placeholders/userPlaceholder.png"
+      [src]="
+        profileImg
+          ? profileImg
+          : '/assets/images/placeholders/userPlaceholder.png'
+      "
       alt=""
     />
     <div class="mat-headline displaySubheading">User since {{ date }}</div>

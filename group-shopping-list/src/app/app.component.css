@@ -5,12 +5,8 @@ mat-sidenav-container {
   left: 0;
   right: 0;
   top: 64px;
-  /* background-color: #edeef7;
-   */
   background: #e4efe2;
-  /* background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);
-  background: linear-gradient(to right, #ffdde1, #ee9ca7); */
 }
-mat-sidenav-content {
+/* mat-sidenav-content {
   padding: 20px;
-}
+} */

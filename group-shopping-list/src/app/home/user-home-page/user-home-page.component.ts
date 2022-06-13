@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import * as AOS from 'aos';
+import { Subscription } from 'rxjs';
 import { Product } from 'src/app/shared/interface/product';
 import { PopUpComponent } from 'src/app/shared/pop-up/pop-up.component';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import {
+  FormResponse,
+  UserStorageService,
+} from 'src/app/shared/services/auth/user-storage.service';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
 
 @Component({
@@ -12,23 +18,28 @@ import { ShoppingListService } from 'src/app/shared/services/shopping-list.servi
   styleUrls: ['./user-home-page.component.css'],
 })
 export class UserHomePageComponent implements OnInit {
+  private userSub: Subscription;
+  profileImg;
+  loggedIn: boolean = false;
+  userName: string;
   oldUser: boolean = true;
   shoppingList: Product[] = [];
   constructor(
     private shoppingListService: ShoppingListService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private userStorage: UserStorageService,
+    private authService: AuthService
   ) {}
   date: string;
 
   ngOnInit(): void {
     this.shoppingList = this.shoppingListService.shoppingList;
     AOS.init();
-    this.date = new Date().toLocaleDateString('en-us', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
+    this.userStorage.fetchUserFromFireBase().subscribe((userData: any) => {
+      console.log(userData);
+      this.userName = userData.firstName[0];
+      this.date = userData.date;
     });
   }
   openProduct(item: Product) {

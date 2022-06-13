@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-side-nav',
@@ -9,5 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SideNavComponent implements OnInit {
   constructor(public router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    AOS.init();
+  }
 }

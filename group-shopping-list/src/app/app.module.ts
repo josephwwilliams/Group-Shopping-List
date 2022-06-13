@@ -5,7 +5,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +23,7 @@ import { UserHomePageComponent } from './home/user-home-page/user-home-page.comp
 import { PlaceholderPipePipe } from './shared/pipes/placeholder-pipe.pipe';
 import { AuthComponent } from './shared/services/auth/auth.component';
 import { AuthInterceptorService } from './shared/services/auth/auth-interceptor.service';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AuthInterceptorService } from './shared/services/auth/auth-interceptor.
     UserHomePageComponent,
     PlaceholderPipePipe,
     AuthComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,7 @@ import { AuthInterceptorService } from './shared/services/auth/auth-interceptor.
     MaterialModule,
     NgChartsModule,
     NgbModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

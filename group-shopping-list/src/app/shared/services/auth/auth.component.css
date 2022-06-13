@@ -5,6 +5,7 @@
   font-weight: bold;
   color: #384951;
 }
+
 .signUpButton {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
@@ -12,9 +13,27 @@
   width: fit-content;
   background-color: #a4d0af;
 }
+.buttons {
+  place-content: space-between;
+}
+.example-stepper {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
 input.mat-input-element {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
+}
+mat-select {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #384951;
 }
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   color: #a4d0af;
@@ -33,4 +52,7 @@ input.mat-input-element {
 :host ::ng-deep .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: #6d9c8a;
+}
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
 }

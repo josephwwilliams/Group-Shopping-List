@@ -25,7 +25,7 @@ export class ShoppingComponent implements OnInit {
   pageSize: number = 10;
   page: number = 1;
   searchTerms: string = '';
-  brand: string = '';
+  brand: string = 'Trader-joe-s';
   placeholderImage: string =
     'https://assets.materialup.com/uploads/b03b23aa-aa69-4657-aa5e-fa5fef2c76e8/preview.png';
 

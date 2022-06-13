@@ -213,6 +213,7 @@
     <app-fitness-tracking></app-fitness-tracking>
   </section>
 </div>
+<app-footer *ngIf="!loggedIn"></app-footer>
 <section *ngIf="loggedIn">
   <app-user-home-page></app-user-home-page>
 </section>

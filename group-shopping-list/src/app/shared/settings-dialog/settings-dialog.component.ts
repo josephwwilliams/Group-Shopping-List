@@ -17,17 +17,15 @@ export class SettingsDialogComponent implements OnInit {
   genders: string[] = ['Male', 'Female', 'Non-Binary', 'I Prefer To Not Say'];
 
   constructor(private authService: AuthService) {}
-  url;
+  url: any;
   ngOnInit(): void {}
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
+      reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event) => {
-        // called once readAsDataURL is completed
         this.url = event.target.result;
+        console.log(this.url);
       };
     }
   }
