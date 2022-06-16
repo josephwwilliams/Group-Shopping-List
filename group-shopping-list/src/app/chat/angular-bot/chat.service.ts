@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 export class Message {
   constructor(public author: string, public content: string) {}
@@ -10,9 +10,10 @@ export class ChatService {
   conversation = new Subject<Message[]>();
   messageMap = {
     Hi: 'Hello',
-    'Who are you': 'My name is Test Sat Bot',
+    'Who are you': 'My name is Healthy-U Service Bot',
     'What is your role': 'Just guide for the user',
-    defaultmsg: "I can't understand your text. Can you please repeat",
+    templateResp:
+      "I can't understand your text. For additional help please contact our team.",
   };
   getBotAnswer(msg: string) {
     const userMessage = new Message('user', msg);
@@ -24,6 +25,6 @@ export class ChatService {
   }
   getBotMessage(question: string) {
     let answer = this.messageMap[question];
-    return answer || this.messageMap['defaultmsg'];
+    return answer || this.messageMap['templateResp'];
   }
 }

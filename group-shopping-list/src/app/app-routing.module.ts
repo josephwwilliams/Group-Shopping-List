@@ -9,6 +9,7 @@ import { SettingsDialogComponent } from './shared/settings-dialog/settings-dialo
 import { AuthComponent } from './shared/services/auth/auth.component';
 import { UserHomePageComponent } from './home/user-home-page/user-home-page.component';
 import { AuthGuard } from './shared/services/auth/auth.guard';
+import { ChatComponent } from './chat/angular-bot/chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -40,6 +41,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'home/account/:id', component: AuthComponent },
+  {
+    path: 'chat',
+    component: ChatComponent,
+  },
 ];
 
 @NgModule({

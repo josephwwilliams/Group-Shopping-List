@@ -24,6 +24,7 @@ import { PlaceholderPipePipe } from './shared/pipes/placeholder-pipe.pipe';
 import { AuthComponent } from './shared/services/auth/auth.component';
 import { AuthInterceptorService } from './shared/services/auth/auth-interceptor.service';
 import { FooterComponent } from './shared/footer/footer.component';
+import { AngularBotModule } from './chat/angular-bot/angular-bot.module';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     NgChartsModule,
     NgbModule,
     ReactiveFormsModule,
+    AngularBotModule,
   ],
   providers: [
     {
