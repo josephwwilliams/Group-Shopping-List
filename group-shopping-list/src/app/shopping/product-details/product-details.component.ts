@@ -27,7 +27,7 @@ export class ProductDetailsComponent implements OnInit {
     plugins: {
       legend: {
         display: true,
-        position: 'left',
+        position: 'top',
       },
       datalabels: {
         formatter: (value, ctx) => {
@@ -66,20 +66,28 @@ export class ProductDetailsComponent implements OnInit {
           this.barcode = this.route.snapshot.params['id'];
           this.selectedItem = infoItem.product;
           let dataSet = this.dataSet(infoItem);
+          console.log(this.selectedItem);
           this.pieChartData.datasets = dataSet;
           this.images = [];
           if (infoItem.product.selected_images !== null || undefined) {
             this.images.push(
-              infoItem.product.selected_images.front.display.en,
-              infoItem.product.selected_images.nutrition.display.en,
-              infoItem.product.selected_images.ingredients.display.en
+              infoItem.product.selected_images.front
+                ? infoItem.product.selected_images.front.display.en
+                : null,
+              infoItem.product.selected_images.nutrition
+                ? infoItem.product.selected_images.nutrition.display.en
+                : null,
+              infoItem.product.selected_images.ingredients
+                ? infoItem.product.selected_images.ingredients.display.en
+                : null
             );
           }
-          console.log(this.images);
+          this.images = this.images.filter((image) => image !== null);
+          let dataTable = this.dataTable();
+          this.dataSource = dataTable;
           this.showSpinner = false;
         });
     }
-    // this.getData().subscribe((res) => console.log(res));
   }
   getProductsByBarcode() {
     this.showSpinner = true;
@@ -89,16 +97,26 @@ export class ProductDetailsComponent implements OnInit {
         this.router.navigate([`product/nutrients/${this.barcode}`]);
         this.selectedItem = infoItem.product;
         let dataSet = this.dataSet(infoItem);
+        console.log(this.selectedItem);
         this.pieChartData.datasets = dataSet;
         this.images = [];
 
         if (infoItem.product.selected_images !== null || undefined) {
           this.images.push(
-            infoItem.product.selected_images.front.display.en,
-            infoItem.product.selected_images.nutrition.display.en,
-            infoItem.product.selected_images.ingredients.display.en
+            infoItem.product.selected_images.front
+              ? infoItem.product.selected_images.front.display.en
+              : null,
+            infoItem.product.selected_images.nutrition
+              ? infoItem.product.selected_images.nutrition.display.en
+              : null,
+            infoItem.product.selected_images.ingredients
+              ? infoItem.product.selected_images.ingredients.display.en
+              : null
           );
         }
+        let dataTable = this.dataTable();
+        this.dataSource = dataTable;
+
         this.showSpinner = false;
       });
   }
@@ -110,9 +128,15 @@ export class ProductDetailsComponent implements OnInit {
     return [
       {
         data: [
-          infoItem.product.nutriments.carbohydrates_serving,
-          infoItem.product.nutriments.fat_serving,
-          infoItem.product.nutriments.proteins_serving,
+          infoItem.product.nutriments.carbohydrates_serving
+            ? infoItem.product.nutriments.carbohydrates_serving
+            : infoItem.product.nutriments.carbohydrates_value,
+          infoItem.product.nutriments.fat_serving
+            ? infoItem.product.nutriments.fat_serving
+            : infoItem.product.nutriments.fat_value,
+          infoItem.product.nutriments.proteins_serving
+            ? infoItem.product.nutriments.proteins_serving
+            : infoItem.product.nutriments.proteins_value,
         ],
         backgroundColor: [
           'rgb(77, 130, 120, 0.5)',
@@ -129,4 +153,119 @@ export class ProductDetailsComponent implements OnInit {
       },
     ];
   }
+  dataTable() {
+    return [
+      {
+        name: 'Carbohydrates',
+        weight: this.selectedItem.nutriments.carbohydrates_serving
+          ? this.selectedItem.nutriments.carbohydrates_serving.toFixed(2)
+          : this.selectedItem.nutriments.carbohydrates_value
+          ? this.selectedItem.nutriments.carbohydrates_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Grams',
+      },
+      {
+        name: 'Fat',
+        weight: this.selectedItem.nutriments.fat_serving
+          ? this.selectedItem.nutriments.fat_serving.toFixed(2)
+          : this.selectedItem.nutriments.fat_value
+          ? this.selectedItem.nutriments.fat_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Grams',
+      },
+      {
+        name: 'Proteins',
+        weight: this.selectedItem.nutriments.proteins_serving
+          ? this.selectedItem.nutriments.proteins_serving.toFixed(2)
+          : this.selectedItem.nutriments.proteins_value
+          ? this.selectedItem.nutriments.proteins_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Grams',
+      },
+      {
+        name: 'Trans-Fat',
+        weight: this.selectedItem.nutriments.trans_fat_serving
+          ? this.selectedItem.nutriments.trans_fat_serving.toFixed(2)
+          : this.selectedItem.nutriments.trans_fat_value
+          ? this.selectedItem.nutriments.trans_fat_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Grams',
+      },
+      {
+        name: 'Saturated-Fat',
+        weight: this.selectedItem.nutriments.saturated_fat_serving
+          ? this.selectedItem.nutriments.saturated_fat_serving.toFixed(2)
+          : this.selectedItem.nutriments.saturated_fat_value
+          ? this.selectedItem.nutriments.saturated_fat_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Grams',
+      },
+      {
+        name: 'Sugars',
+        weight: this.selectedItem.nutriments.sugars_serving
+          ? this.selectedItem.nutriments.sugars_serving.toFixed(2)
+          : this.selectedItem.nutriments.sugars_value
+          ? this.selectedItem.nutriments.sugars_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Grams',
+      },
+      {
+        name: 'Fiber',
+        weight: this.selectedItem.nutriments.fiber_serving
+          ? this.selectedItem.nutriments.fiber_serving.toFixed(2)
+          : this.selectedItem.nutriments.fiber_value
+          ? this.selectedItem.nutriments.fiber_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Grams',
+      },
+      {
+        name: 'Calcium',
+        weight: this.selectedItem.nutriments.calcium_serving
+          ? this.selectedItem.nutriments.calcium_serving.toFixed(2)
+          : this.selectedItem.nutriments.calcium_value
+          ? this.selectedItem.nutriments.calcium_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Milligrams',
+      },
+      {
+        name: 'Cholesterol',
+        weight: this.selectedItem.nutriments.cholesterol_serving
+          ? this.selectedItem.nutriments.cholesterol_serving.toFixed(2)
+          : this.selectedItem.nutriments.cholesterol_value
+          ? this.selectedItem.nutriments.cholesterol_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Milligrams',
+      },
+      {
+        name: 'Salt',
+        weight: this.selectedItem.nutriments.salt_serving
+          ? this.selectedItem.nutriments.salt_serving.toFixed(2)
+          : this.selectedItem.nutriments.salt_value
+          ? this.selectedItem.nutriments.salt_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Milligrams',
+      },
+      {
+        name: 'Sodium',
+        weight: this.selectedItem.nutriments.sodium_serving
+          ? this.selectedItem.nutriments.sodium_serving.toFixed(2)
+          : this.selectedItem.nutriments.sodium_value
+          ? this.selectedItem.nutriments.sodium_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Milligrams',
+      },
+      {
+        name: 'Iron',
+        weight: this.selectedItem.nutriments.iron_serving
+          ? this.selectedItem.nutriments.iron_serving.toFixed(2)
+          : this.selectedItem.nutriments.iron_value
+          ? this.selectedItem.nutriments.iron_value.toFixed(2)
+          : 'Unavailable',
+        symbol: 'Milligrams',
+      },
+    ];
+  }
+
+  displayedColumns: string[] = ['name', 'weight', 'symbol'];
+  dataSource: {}[];
 }

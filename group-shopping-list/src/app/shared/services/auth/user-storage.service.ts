@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { exhaustMap, take } from 'rxjs';
+import { ShoppingListService } from '../shopping-list.service';
 import { AuthService } from './auth.service';
 
 export interface FormResponse {
@@ -31,7 +32,11 @@ export interface FormResponse {
 })
 export class UserStorageService {
   currentUser: FormResponse;
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private shoppingListService: ShoppingListService
+  ) {}
   addUserToFireBase(form: FormResponse) {
     return this.authService.user.pipe(
       take(1),
@@ -70,6 +75,19 @@ export class UserStorageService {
         let userEmail = user.email.replace('@', '').replace('.', '');
         return this.http.get(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}.json`
+        );
+      })
+    );
+  }
+
+  storeFavoritesToFireBase() {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/shoppingList.json`,
+          this.shoppingListService.shoppingList
         );
       })
     );

@@ -140,38 +140,40 @@
         label="Goal"
         [stepControl]="userDetails.get([0])"
       >
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <!-- <mat-label>GOAL</mat-label>
-            <input matInput formControlName="goal" /> -->
-            <mat-select formControlName="goal" placeholder="Choose a goal">
-              <mat-option
-                *ngFor="let goal of goals; let i = index"
-                [value]="goal"
-                >{{ goal }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="row buttons">
-          <button
-            type="button"
-            mat-button
-            matStepperPrevious
-            style="margin: 5px"
-            class="signUpButton"
-          >
-            Back
-          </button>
-          <button
-            type="button"
-            mat-button
-            matStepperNext
-            style="margin: 5px"
-            class="signUpButton"
-          >
-            Next
-          </button>
+        <div class="stepContainer">
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <!-- <mat-label>GOAL</mat-label>
+              <input matInput formControlName="goal" /> -->
+              <mat-select formControlName="goal" placeholder="Choose a goal">
+                <mat-option
+                  *ngFor="let goal of goals; let i = index"
+                  [value]="goal"
+                  >{{ goal }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="row buttons">
+            <button
+              type="button"
+              mat-button
+              matStepperPrevious
+              style="margin: 5px"
+              class="signUpButton"
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              mat-button
+              matStepperNext
+              style="margin: 5px"
+              class="signUpButton"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </mat-step>
 
@@ -180,37 +182,40 @@
         formGroupName="1"
         label="Name"
         [stepControl]="userDetails.get([1])"
-        ><div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>First Name</mat-label>
-            <input matInput formControlName="firstName" />
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lastName" />
-          </mat-form-field>
-        </div>
-        <div class="row buttons">
-          <button
-            type="button"
-            mat-button
-            matStepperPrevious
-            style="margin: 5px"
-            class="signUpButton"
-          >
-            Back
-          </button>
-          <button
-            type="button"
-            mat-button
-            matStepperNext
-            style="margin: 5px"
-            class="signUpButton"
-          >
-            Next
-          </button>
+      >
+        <div class="stepContainer">
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" />
+            </mat-form-field>
+          </div>
+          <div class="row buttons">
+            <button
+              type="button"
+              mat-button
+              matStepperPrevious
+              style="margin: 5px"
+              class="signUpButton"
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              mat-button
+              matStepperNext
+              style="margin: 5px"
+              class="signUpButton"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </mat-step>
       <!-- STEP 3 AGE, HEIGHT, WEIGHT, ACTIVITY LVL, GENDER -->
@@ -218,60 +223,63 @@
         formGroupName="2"
         label="Personal Details"
         [stepControl]="userDetails.get([2])"
-        ><div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Age</mat-label>
-            <input type="number" matInput formControlName="age" />
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>HEIGHT</mat-label>
-            <input type="number" matInput formControlName="height" />
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>WEIGHT</mat-label>
-            <input type="number" matInput formControlName="weight" />
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>ACTIVITY LVL</mat-label>
-            <input type="number" matInput formControlName="activity" />
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-select formControlName="gender">
-              <mat-option
-                *ngFor="let gender of genders; let i = index"
-                [value]="gender"
-                >{{ gender }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="row buttons">
-          <button
-            type="button"
-            mat-button
-            matStepperPrevious
-            style="margin: 5px"
-            class="signUpButton"
-          >
-            Back
-          </button>
-          <button
-            type="button"
-            mat-button
-            matStepperNext
-            style="margin: 5px"
-            class="signUpButton"
-          >
-            Next
-          </button>
+      >
+        <div class="stepContainer">
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Age</mat-label>
+              <input type="number" matInput formControlName="age" />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>HEIGHT</mat-label>
+              <input type="number" matInput formControlName="height" />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>WEIGHT</mat-label>
+              <input type="number" matInput formControlName="weight" />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>ACTIVITY LVL</mat-label>
+              <input type="number" matInput formControlName="activity" />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-select formControlName="gender">
+                <mat-option
+                  *ngFor="let gender of genders; let i = index"
+                  [value]="gender"
+                  >{{ gender }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="row buttons">
+            <button
+              type="button"
+              mat-button
+              matStepperPrevious
+              style="margin: 5px"
+              class="signUpButton"
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              mat-button
+              matStepperNext
+              style="margin: 5px"
+              class="signUpButton"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </mat-step>
       <!-- STEP 4 EMAIL, PASSOWRD SUBMIT -->
@@ -280,78 +288,83 @@
         label="Email & Password"
         [disabled]
         [stepControl]="userDetails.get([3])"
-        ><div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input
-              matInput
-              placeholder="BillBoy12@email.com"
-              formControlName="email"
-            />
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input
-              matInput
-              formControlName="password"
-              placeholder="SuperSafePass"
-            />
-          </mat-form-field>
-        </div>
-        <div class="row buttons">
-          <button
-            type="button"
-            mat-button
-            matStepperPrevious
-            style="margin: 5px"
-            class="signUpButton"
-          >
-            Back
-          </button>
-          <button
-            type="submit"
-            mat-button
-            matStepperNext
-            style="margin: 5px"
-            class="signUpButton"
-            [disabled]="!user.valid"
-          >
-            Next
-          </button>
+      >
+        <div class="stepContainer">
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="BillBoy12@email.com"
+                formControlName="email"
+              />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                formControlName="password"
+                placeholder="SuperSafePass"
+              />
+            </mat-form-field>
+          </div>
+          <div class="row buttons">
+            <button
+              type="button"
+              mat-button
+              matStepperPrevious
+              style="margin: 5px"
+              class="signUpButton"
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              mat-button
+              matStepperNext
+              style="margin: 5px"
+              class="signUpButton"
+              [disabled]="!user.valid"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </mat-step>
-      <mat-step label="Welcome!" [disabled]
-        ><div class="row">
-          <div class="alert alert-danger" *ngIf="error">
-            <p>{{ error }}</p>
+      <mat-step label="Welcome!" [disabled]>
+        <div class="stepContainer">
+          <div class="row">
+            <div class="alert alert-danger" *ngIf="error">
+              <p>{{ error }}</p>
+            </div>
+            <div *ngIf="!error" class="mat-display-1 displaySubheading">
+              Welcome to Healthy-U
+            </div>
           </div>
-          <div *ngIf="!error" class="mat-display-1 displaySubheading">
-            Welcome to Healthy-U
+          <div class="row">
+            <button
+              type="button"
+              mat-button
+              matStepperPrevious
+              style="margin: 5px"
+              class="signUpButton"
+              *ngIf="error"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              mat-button
+              style="margin: 5px"
+              class="signUpButton"
+              (click)="redirect()"
+              *ngIf="!error"
+            >
+              Explore
+            </button>
           </div>
-        </div>
-        <div class="row buttons">
-          <button
-            type="button"
-            mat-button
-            matStepperPrevious
-            style="margin: 5px"
-            class="signUpButton"
-            *ngIf="error"
-          >
-            Edit
-          </button>
-          <button
-            type="button"
-            mat-button
-            style="margin: 5px"
-            class="signUpButton"
-            (click)="redirect()"
-            *ngIf="!error"
-          >
-            Explore
-          </button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>

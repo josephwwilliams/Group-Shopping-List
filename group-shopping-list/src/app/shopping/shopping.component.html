@@ -61,22 +61,10 @@
         "
         *ngFor="let item of shoppingItems"
       >
-        <mat-card-header class="cardHeader">
-          <!-- <img
-            mat-card-image
-            class="mx-auto img-fluid"
-            style="max-height: 150px; width: auto; cursor: pointer"
-            [src]="
-              item.image_url
-                ? item.image_url
-                : (item.food_groups_tags | placeholderPipe | async)
-            "
-            alt=""
-            (click)="openProduct(item)"
-          /> -->
+        <mat-card-header class="cardHeader" style="display: block">
           <img
             mat-card-image
-            class="mx-auto img-fluid"
+            class="mx-auto my-auto img-fluid"
             style="max-height: 150px; width: auto; cursor: pointer"
             [src]="item.image_url ? item.image_url : placeholderImage"
             alt=""
@@ -84,12 +72,17 @@
           />
         </mat-card-header>
         <mat-card-content>
+          <mat-card-subtitle style="text-align: left">{{
+            item.brands
+          }}</mat-card-subtitle>
           <h1
             class="row"
             style="
               cursor: pointer;
               font-family: 'Poppins', sans-serif;
               font-weight: bold;
+              max-height: 100px;
+              overflow: hidden;
             "
             (click)="openProduct(item)"
           >

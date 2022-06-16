@@ -19,6 +19,10 @@
 .example-stepper {
   margin-top: 8px;
 }
+.stepContainer {
+  width: 200px;
+  margin: 0 auto;
+}
 
 .mat-form-field {
   margin-top: 16px;

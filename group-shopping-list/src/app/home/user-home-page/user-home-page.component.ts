@@ -34,12 +34,14 @@ export class UserHomePageComponent implements OnInit {
   date: string;
 
   ngOnInit(): void {
-    this.shoppingList = this.shoppingListService.shoppingList;
     AOS.init();
     this.userStorage.fetchUserFromFireBase().subscribe((userData: any) => {
       console.log(userData);
       this.userName = userData.firstName[0];
       this.date = userData.date;
+      if (userData.shoppingList[0] === 0) {
+        this.shoppingList = [];
+      } else this.shoppingList = userData.shoppingList;
     });
   }
   openProduct(item: Product) {
