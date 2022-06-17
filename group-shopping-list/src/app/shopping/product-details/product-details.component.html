@@ -20,45 +20,31 @@
       </div>
     </div>
   </div>
-  <button
-    style="width: 90%"
-    class="addToShoppingList"
-    mat-raised-button
-    aria-label="Example icon button with a shopping icon"
-    (click)="addToShoppingList()"
-  >
-    <span class="material-icons"> shopping_basket </span>
-  </button>
 </div>
 <div class="container" *ngIf="selectedItem">
-  {{
+  <!-- {{
     selectedItem.product_name
       ? selectedItem.product_name
       : selectedItem.product_name_fr
   }}
   {{ selectedItem.nutriments["energy-kcal_serving"] | number }} Calories Per
-  Serving
+  Serving -->
   <div class="row">
     <div class="col-md-6" data-aos="fade-right" data-aos-duration="1500">
       <ngb-carousel
         *ngIf="images.length !== 0"
-        style="
-          height: 500px;
-          background-color: black;
-          border-radius: 10px;
-          max-width: 500px;
-        "
+        style="height: 500px; max-width: 500px; margin: 20px"
       >
-        <ng-template ngbSlide>
+        <ng-template ngbSlide *ngFor="let image of images; let i = index">
           <div class="picsum-img-wrapper">
             <img
-              [src]="images[0]"
+              [src]="images[i]"
               alt="Random first slide"
               class="img-fluid w-90"
             />
           </div>
         </ng-template>
-        <ng-template ngbSlide>
+        <!-- <ng-template ngbSlide>
           <div class="picsum-img-wrapper">
             <img [src]="images[1]" alt="Random second slide" />
           </div>
@@ -67,7 +53,7 @@
           <div class="picsum-img-wrapper">
             <img [src]="images[2]" alt="Random third slide" />
           </div>
-        </ng-template>
+        </ng-template> -->
       </ngb-carousel>
       <!-- <img
         style="border-radius: 5px"
@@ -80,6 +66,101 @@
       /> -->
     </div>
     <div class="col-md-6" data-aos="fade-left" data-aos-duration="1500">
+      <!-- <div
+        *ngIf="selectedItem && !showSpinner && pieChartData"
+        style="max-width: 600px"
+      >
+        <div>
+          <div class="chart">
+            <canvas
+              baseChart
+              [colors]="pieChartColors"
+              [data]="pieChartData"
+              [type]="pieChartType"
+              [options]="pieChartOptions"
+              [plugins]="pieChartPlugins"
+            >
+            </canvas>
+          </div>
+        </div>
+      </div> -->
+      <mat-card style="text-align: center; margin: 20px">
+        <mat-card-subtitle style="text-align: left">{{
+          selectedItem.brands
+        }}</mat-card-subtitle>
+        <mat-card-title>
+          <div class="mat-display-2 displaySubheading">
+            {{
+              selectedItem.product_name
+                ? selectedItem.product_name
+                : selectedItem.product_name_fr
+            }}
+          </div>
+        </mat-card-title>
+        <div class="mat-headline displaySubheading">Ingredients:</div>
+        <mat-divider></mat-divider>
+        <div
+          class="mat-headline displaySubheading"
+          style="
+            height: 300px;
+            overflow: scroll;
+            overflow-x: hidden;
+            box-shadow: -2px 8px 20px 0px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+          "
+        >
+          <p
+            *ngFor="
+              let i of selectedItem.ingredients_ids_debug;
+              let current = index
+            "
+            style="margin: 2px"
+          >
+            <span style="color: rgb(77, 130, 120); font-size: xx-large">{{
+              current + 1
+            }}</span>
+            . {{ i }}
+          </p>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-card-actions style="text-align: left">
+          <button
+            class="addToShoppingList"
+            mat-raised-button
+            aria-label="Example icon button with a shopping icon"
+            (click)="addToShoppingList()"
+          >
+            <span class="material-icons"> shopping_basket </span>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div
+    class="row"
+    data-aos="fade-left"
+    data-aos-duration="1500"
+    data-aos-anchor=".mat-display-2"
+  >
+    <div class="mat-headline active displaySubheading">
+      {{
+        selectedItem.product_name
+          ? selectedItem.product_name
+          : selectedItem.product_name_fr
+      }}
+      Nutrient Data
+      {{ selectedItem.nutriments.carbohydrates_serving ? "Per Serving" : "" }}
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row" style="margin: 20px">
+    <div
+      class="col-md-6"
+      data-aos="fade-right"
+      data-aos-duration="1500"
+      data-aos-anchor=".mat-display-2"
+    >
       <div
         *ngIf="selectedItem && !showSpinner && pieChartData"
         style="max-width: 600px"
@@ -99,25 +180,46 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- </div>
+    <div
+      class="col-md-6"
+      data-aos="fade-left"
+      data-aos-duration="1500"
+      data-aos-anchor=".mat-display-2"
+    >
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.position }}
+          </mat-cell>
+        </ng-container>
 
-<div
-  *ngIf="selectedItem && !showSpinner && pieChartData"
-  style="max-width: 600px"
->
-  <div>
-    <div class="chart">
-      <canvas
-        baseChart
-        [colors]="pieChartColors"
-        [data]="pieChartData"
-        [type]="pieChartType"
-        [options]="pieChartOptions"
-        [plugins]="pieChartPlugins"
-      >
-      </canvas>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <mat-header-cell *matHeaderCellDef> Size </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.weight }}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <mat-header-cell *matHeaderCellDef> Unit </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.symbol }}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
     </div>
   </div>
-</div> -->
 </div>

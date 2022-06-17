@@ -5,6 +5,7 @@ import { PopUpComponent } from 'src/app/shared/pop-up/pop-up.component';
 import { Product } from 'src/app/shared/interface/product';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
 import * as AOS from 'aos';
+import { UserStorageService } from 'src/app/shared/services/auth/user-storage.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -16,7 +17,8 @@ export class ShoppingListComponent implements OnInit {
   constructor(
     private shoppingListService: ShoppingListService,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private userStorageService: UserStorageService
   ) {}
 
   ngOnInit(): void {
@@ -36,5 +38,9 @@ export class ShoppingListComponent implements OnInit {
   }
   openProduct(item: Product) {
     this.router.navigate([`product/nutrients/${item._id}`]);
+  }
+
+  storeFavorites() {
+    this.userStorageService.storeFavoritesToFireBase().subscribe();
   }
 }

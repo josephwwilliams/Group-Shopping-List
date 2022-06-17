@@ -1,7 +1,4 @@
 .addToShoppingList {
-  position: absolute;
-  bottom: 5px;
-  left: 5%;
   background-color: #6d9c8a;
   color: white;
 }
@@ -10,4 +7,32 @@ img {
   height: 500px;
   object-fit: cover;
   overflow: hidden;
+}
+.displayHeading {
+  text-align: center;
+  font-family: "Lora", serif;
+  padding-top: 80px;
+  color: #384951;
+}
+.displaySubheading {
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #384951;
+}
+.signUpButton {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  width: fit-content;
+  cursor: pointer;
+  background-color: #a4d0af;
+  margin: 5px;
+}
+.picsum-img-wrapper {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 3px solid rgb(77, 130, 120, 0.5);
 }

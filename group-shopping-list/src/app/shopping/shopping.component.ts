@@ -37,10 +37,6 @@ export class ShoppingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.shoppingService.getPlaceholderImage().subscribe((res) => {
-    //   this.placeholderImage = res.results[0].urls.raw;
-    //   console.log(this.placeholderImage);
-    // });
     AOS.init();
     this.searchForItems();
     if (this.shoppingService.listOfTop50Brands.length === 0) {

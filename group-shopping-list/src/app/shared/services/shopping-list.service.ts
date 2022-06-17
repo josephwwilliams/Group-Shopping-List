@@ -44,7 +44,7 @@ export class ShoppingListService {
         duration: 3000,
         data: {
           message:
-            'Already added to cart! Go to shopping list to edit quantity',
+            'Already added to List! Go to shopping list to edit quantity',
         },
       });
     }
