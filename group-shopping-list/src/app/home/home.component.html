@@ -210,7 +210,64 @@
 
   <mat-divider></mat-divider>
   <section>
-    <app-fitness-tracking></app-fitness-tracking>
+    <div class="container">
+      <div
+        class="row"
+        data-aos="fade-down"
+        data-aos-duration="1500"
+        data-aos-anchor=".mat-display-2"
+      >
+        <div class="mat-display-4 displayHeading">Fitness Tab</div>
+        <h1 class="displaySubheading">{{ value }}%</h1>
+        <mat-progress-bar mode="buffer" [value]="value"></mat-progress-bar>
+        <h1 class="displaySubheading">1,112 out of 2,400 calories</h1>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-6"
+          data-aos="fade-right"
+          data-aos-duration="1500"
+          data-aos-anchor=".mat-display-2"
+        >
+          <div
+            class="mat-display-3"
+            style="
+              text-align: center;
+
+              font-family: 'Lora', serif;
+              padding-top: 80px;
+
+              color: #384951;
+            "
+          >
+            Current Macros for the day
+          </div>
+          <mat-divider></mat-divider>
+          <mat-list>
+            <mat-list-item> Carbs: 120</mat-list-item>
+            <mat-list-item> Fats: 48</mat-list-item>
+            <mat-list-item> Protiens: 50</mat-list-item>
+          </mat-list>
+        </div>
+        <div
+          class="col-md-6"
+          data-aos="fade-left"
+          data-aos-duration="1500"
+          data-aos-anchor=".mat-display-2"
+        >
+          <div class="chart">
+            <canvas
+              baseChart
+              [data]="pieChartData2"
+              [type]="pieChartType"
+              [options]="pieChartOptions"
+              [plugins]="pieChartPlugins"
+            >
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 <app-footer *ngIf="!loggedIn"></app-footer>

@@ -30,7 +30,13 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions =
       this.shoppingListService.changeToShoppingList.subscribe(
-        (addOrSubtract: number) => (this.shoppingList += addOrSubtract)
+        (addOrSubtract: number) => {
+          if (addOrSubtract === -1 || addOrSubtract === 1) {
+            this.shoppingList += addOrSubtract;
+          } else {
+            this.shoppingList = addOrSubtract;
+          }
+        }
       );
     this.userStorage
       .fetchUserFromFireBase()

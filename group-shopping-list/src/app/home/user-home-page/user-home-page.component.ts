@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -20,6 +21,10 @@ import { ShoppingListService } from 'src/app/shared/services/shopping-list.servi
 export class UserHomePageComponent implements OnInit {
   private userSub: Subscription;
   profileImg;
+  calories: number;
+  carbs: number;
+  fats: number;
+  proteins: number;
   loggedIn: boolean = false;
   userName: string;
   oldUser: boolean = true;
@@ -29,7 +34,8 @@ export class UserHomePageComponent implements OnInit {
     private router: Router,
     private _snackBar: MatSnackBar,
     private userStorage: UserStorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
   ) {}
   date: string;
 
@@ -37,8 +43,13 @@ export class UserHomePageComponent implements OnInit {
     AOS.init();
     this.userStorage.fetchUserFromFireBase().subscribe((userData: any) => {
       console.log(userData);
+      this.profileImg = userData.profileImg;
       this.userName = userData.firstName[0];
       this.date = userData.date;
+      this.calories = userData.macros.calorie.toFixed(0);
+      this.carbs = userData.macros.balanced.carbs.toFixed(0);
+      this.fats = userData.macros.balanced.fat.toFixed(0);
+      this.proteins = userData.macros.balanced.protein.toFixed(0);
       if (userData.shoppingList[0] === 0) {
         this.shoppingList = [];
       } else this.shoppingList = userData.shoppingList;
@@ -48,6 +59,10 @@ export class UserHomePageComponent implements OnInit {
     this.router.navigate([`product/nutrients/${item._id}`]);
   }
   copied() {
+    this.shoppingListService.changeToShoppingList.next(
+      this.shoppingList.length
+    );
+    this.shoppingListService.shoppingList = this.shoppingList;
     this._snackBar.openFromComponent(PopUpComponent, {
       duration: 1500,
       data: {

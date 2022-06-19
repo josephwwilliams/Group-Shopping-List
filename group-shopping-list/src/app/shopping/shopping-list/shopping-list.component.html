@@ -1,4 +1,4 @@
-<div class="itemContainer">
+<section style="overflow-x: hidden">
   <div class="row">
     <div
       class="mat-display-3"
@@ -11,42 +11,69 @@
       "
     >
       Shopping List
-      <button (click)="storeFavorites()">me</button>
+      <button
+        [disabled]="shoppingList.length === 0"
+        mat-raised-button
+        class="signUpButton"
+        (click)="storeFavorites()"
+      >
+        <span class="material-icons"> publish </span>
+      </button>
     </div>
-    <mat-card
-      *ngFor="let item of shoppingList; let i = index"
-      (click)="openProduct(item)"
-      style="margin: 5px"
-      data-aos="fade-up"
-      data-aos-duration="1000"
-      data-aos-anchor=".mat-display-2"
-    >
-      <div class="row">
-        <div class="col-md-2">
-          <img
-            style="max-width: 30px; height: auto"
-            [src]="
-              item.image_url
-                ? item.image_url
-                : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
-            "
-          />
-        </div>
-        <div class="col-md-9">
-          {{ item.product_name ? item.product_name : item.product_name_fr }}
-        </div>
-        <div class="col-md-1">
-          <button
-            class="RemoveFromShoppingList"
-            mat-raised-button
-            aria-label="Example icon button with a delete icon"
-            (click)="RemoveFromShoppingList(item, i)"
+    <div *ngIf="shoppingList.length !== 0" class="container">
+      <mat-card
+        *ngFor="let item of shoppingList; let i = index"
+        (click)="openProduct(item)"
+        style="margin: 5px; width: 500px; height: auto"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-anchor=".mat-display-2"
+      >
+        <div
+          class="row"
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <div
+            class="col-md-2"
+            style="display: flex; align-items: center; justify-content: center"
           >
-            <span class="material-icons"> delete </span>
-          </button>
+            <img
+              class="mx-auto my-auto img-fluid"
+              style="max-height: 75px; width: auto; cursor: pointer"
+              [src]="
+                item.image_url
+                  ? item.image_url
+                  : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
+              "
+            />
+          </div>
+          <div
+            class="col-md-7"
+            style="
+              display: flex;
+
+              justify-content: center;
+
+              align-items: center;
+            "
+          >
+            <h1 class="displaySubheading">
+              {{ item.product_name ? item.product_name : item.product_name_fr }}
+            </h1>
+          </div>
+          <div class="col-md-3">
+            <button
+              class="RemoveFromShoppingList"
+              mat-raised-button
+              aria-label="Example icon button with a delete icon"
+              (click)="RemoveFromShoppingList(item, i)"
+            >
+              <span class="material-icons"> delete </span>
+            </button>
+          </div>
         </div>
-      </div>
-    </mat-card>
+      </mat-card>
+    </div>
     <!-- <mat-card
       class="example-card"
       style="
@@ -111,4 +138,4 @@
       Your shopping list is empty!
     </div>
   </div>
-</div>
+</section>

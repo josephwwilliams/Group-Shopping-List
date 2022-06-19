@@ -15,10 +15,16 @@
         color: #384951;
       "
     >
-      {{ "User's" }} Fitness Tab
+      Fitness Tab
     </div>
-    <mat-progress-bar mode="buffer" value="40"></mat-progress-bar>
-    <h1 style="text-align: center">{{ value }}%</h1>
+    <h1 class="displaySubheading" *ngIf="currentCalories === 0">0%</h1>
+    <h1 class="displaySubheading" *ngIf="currentCalories > 0">
+      {{ value | number }}%
+    </h1>
+    <mat-progress-bar mode="buffer" [value]="value"></mat-progress-bar>
+    <h1 class="displaySubheading">
+      {{ currentCalories }} out of {{ totalCalories }} calories
+    </h1>
   </div>
   <div class="row">
     <div
@@ -42,9 +48,16 @@
       </div>
       <mat-divider></mat-divider>
       <mat-list>
-        <mat-list-item> Carbs: </mat-list-item>
-        <mat-list-item> Fats: </mat-list-item>
-        <mat-list-item> Protiens: </mat-list-item>
+        <mat-list-item class="mat-headline displaySubheading">
+          Carbs : {{ currentCarbs }} out of {{ totalCarbs }}</mat-list-item
+        >
+        <mat-list-item class="mat-headline displaySubheading">
+          Fats : {{ currentFats }} out of {{ totalFats }}</mat-list-item
+        >
+        <mat-list-item class="mat-headline displaySubheading">
+          Protiens : {{ currentProteins }} out of
+          {{ totalProteins }}</mat-list-item
+        >
       </mat-list>
     </div>
     <div

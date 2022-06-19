@@ -15,6 +15,7 @@ import { User } from '../shared/services/auth/user.model';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  value: number = 46.33;
   loggedIn: boolean = false;
   pieChartDisplayProduct: string = 'Nutella hazelnut spread (Per Serving)';
   current: number = 0;
@@ -86,6 +87,23 @@ export class HomeComponent implements OnInit {
       },
     ],
   };
+  public pieChartData2: ChartData<'pie', number[], string | string[]> = {
+    labels: [['Carbs (g) '], ['Fats (g) '], ['Proteins (g) ']],
+    datasets: [
+      {
+        data: [120, 48, 50],
+        backgroundColor: [
+          'rgb(77, 130, 120, 0.5)',
+          'rgb(164, 208, 175, 0.5)',
+          'rgb(56, 73, 81, 0.5)',
+        ],
+        borderColor: ['white'],
+        hoverBackgroundColor: ['#4d8278', '#A4D0AF', '#384951'],
+        hoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
+      },
+    ],
+  };
+
   public pieChartType: ChartType = 'pie';
   public pieChartPlugins = [DatalabelsPlugin];
   dataSet() {

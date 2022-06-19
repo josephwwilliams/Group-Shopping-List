@@ -10,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthResponseData, AuthService } from './auth.service';
 import * as AOS from 'aos';
-import { UserStorageService } from './user-storage.service';
+import { MacroResponse, UserStorageService } from './user-storage.service';
+import { MacroCalculatorService } from '../macro-calculator.service';
 
 @Component({
   selector: 'app-auth',
@@ -33,7 +34,8 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userStorageService: UserStorageService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private macroCalculator: MacroCalculatorService
   ) {}
 
   get userDetails(): FormArray {
@@ -70,7 +72,8 @@ export class AuthComponent implements OnInit {
     this.userDetails.push(
       this._formBuilder.group({
         age: ['', Validators.required],
-        height: ['', Validators.required],
+        feet: ['', Validators.required],
+        inches: ['', Validators.required],
         weight: ['', Validators.required],
         activity: ['', Validators.required],
         gender: ['', Validators.required],
@@ -111,11 +114,11 @@ export class AuthComponent implements OnInit {
         console.log(resData);
         this.isLoading = false;
         if (!this.isLoginMode) {
-          this.userStorageService
-            .addUserToFireBase(this.userDetails.value)
-            .subscribe((res) => {
-              console.log(this.userDetails.value);
-            });
+          // this.userStorageService
+          //   .addUserToFireBase(this.userDetails.value)
+          //   .subscribe((res) => {
+          //     console.log(this.userDetails.value);
+          //   });
         }
         this.router.navigate(['']);
       },
@@ -138,10 +141,25 @@ export class AuthComponent implements OnInit {
         console.log(resData);
         this.isLoading = false;
         if (!this.isLoginMode) {
-          this.userStorageService
-            .addUserToFireBase(this.userDetails.value)
-            .subscribe((res) => {
-              this.error = null;
+          console.log(this.userDetails.value);
+          this.macroCalculator
+            .getUserMacros(
+              this.userDetails.value[2].age,
+              this.userDetails.value[2].gender,
+              this.userDetails.value[2].feet,
+              this.userDetails.value[2].inches,
+              this.userDetails.value[2].weight,
+              this.userDetails.value[2].activity,
+              this.userDetails.value[0].goal
+            )
+            .subscribe((macros: MacroResponse) => {
+              console.log(macros);
+              this.userStorageService
+
+                .addUserToFireBase(this.userDetails.value, macros)
+                .subscribe((res) => {
+                  this.error = null;
+                });
             });
         }
       },

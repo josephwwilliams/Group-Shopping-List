@@ -1,4 +1,9 @@
-<div class="container">
+<div
+  class="container"
+  data-aos="fade-down"
+  data-aos-duration="1000"
+  data-aos-anchor=".mat-headline"
+>
   <div class="form-group">
     <div class="input-group">
       <input
@@ -98,15 +103,14 @@
           </div>
         </mat-card-title>
         <div class="mat-headline displaySubheading">Ingredients:</div>
-        <mat-divider></mat-divider>
         <div
           class="mat-headline displaySubheading"
           style="
             height: 300px;
             overflow: scroll;
             overflow-x: hidden;
-            box-shadow: -2px 8px 20px 0px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
+            border: 1px solid rgb(77, 130, 120, 0.2);
           "
         >
           <p
@@ -114,7 +118,7 @@
               let i of selectedItem.ingredients_ids_debug;
               let current = index
             "
-            style="margin: 2px"
+            style="margin: 10px"
           >
             <span style="color: rgb(77, 130, 120); font-size: xx-large">{{
               current + 1
@@ -122,7 +126,6 @@
             . {{ i }}
           </p>
         </div>
-        <mat-divider></mat-divider>
         <mat-card-actions style="text-align: left">
           <button
             class="addToShoppingList"
@@ -131,6 +134,13 @@
             (click)="addToShoppingList()"
           >
             <span class="material-icons"> shopping_basket </span>
+          </button>
+          <button
+            class="addToShoppingList"
+            mat-raised-button
+            aria-label="Example icon button with a cookie"
+          >
+            <span class="material-icons"> cookie </span>
           </button>
         </mat-card-actions>
       </mat-card>

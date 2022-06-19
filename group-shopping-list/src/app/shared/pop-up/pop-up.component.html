@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!data.copied">
+<div class="container" *ngIf="!data.copied && !data.saveMessage">
   <div class="div" *ngIf="data.message">
     <div class="row" style="text-align: center">
       {{ data.message
@@ -21,8 +21,13 @@
     }}
   </div>
 </div>
-<div class="container">
-  <div *ngIf="data.copied">
+<div class="container" *ngIf="data.copied">
+  <div>
     {{ data.copied }}
+  </div>
+</div>
+<div class="container" *ngIf="data.saveMessage">
+  <div>
+    {{ data.saveMessage }}
   </div>
 </div>

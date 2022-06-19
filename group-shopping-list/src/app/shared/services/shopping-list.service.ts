@@ -11,7 +11,14 @@ export class ShoppingListService {
   changeToShoppingList = new Subject<any>();
   shoppingList: Product[] = [];
   constructor(private _snackBar: MatSnackBar) {}
-
+  saveShoppingList() {
+    this._snackBar.openFromComponent(PopUpComponent, {
+      duration: 1500,
+      data: {
+        saveMessage: 'Saved Shopping List!',
+      },
+    });
+  }
   addToShoppingList(item: Product) {
     if (this.shoppingList.length === 0) {
       this.shoppingList.push(item);

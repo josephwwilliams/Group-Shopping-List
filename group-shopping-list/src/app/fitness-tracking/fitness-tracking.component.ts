@@ -3,6 +3,7 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import * as AOS from 'aos';
+import { UserStorageService } from '../shared/services/auth/user-storage.service';
 
 @Component({
   selector: 'app-fitness-tracking',
@@ -10,11 +11,28 @@ import * as AOS from 'aos';
   styleUrls: ['./fitness-tracking.component.css'],
 })
 export class FitnessTrackingComponent implements OnInit {
-  value: number = 40;
-  constructor() {}
+  totalCalories: number = 0;
+  currentCalories: number = 0;
+  totalCarbs: number = 0;
+  currentCarbs: number = 0;
+  totalFats: number = 0;
+  currentFats: number = 0;
+  totalProteins: number = 0;
+  currentProteins: number = 0;
+  value: number = 0;
+  constructor(private userStorageService: UserStorageService) {}
 
   ngOnInit(): void {
     AOS.init();
+    this.userStorageService
+      .fetchUserFromFireBase()
+      .subscribe((userData: any) => {
+        this.totalCalories = userData.macros.calorie.toFixed(0);
+        this.totalCarbs = userData.macros.balanced.carbs.toFixed(0);
+        this.totalFats = userData.macros.balanced.fat.toFixed(0);
+        this.totalProteins = userData.macros.balanced.protein.toFixed(0);
+        this.value = (this.currentCalories / this.totalCalories) * 100;
+      });
     let dataSet = this.dataSet();
     this.pieChartData.datasets = dataSet;
   }
@@ -60,40 +78,4 @@ export class FitnessTrackingComponent implements OnInit {
       },
     ];
   }
-  // dataSets = [
-  //   [
-  //     {
-  //       data: [45, 20, 35],
-  //       backgroundColor: [
-  //         'rgb(77, 130, 120, 0.5)',
-  //         'rgb(164, 208, 175, 0.5)',
-  //         'rgb(56, 73, 81, 0.5)',
-  //       ],
-  //       borderColor: ['white'],
-  //       pointBackgroundColor: ['#4d8278', '#A4D0AF', '#384951'],
-  //       pointBorderColor: ['#fff'],
-  //       pointHoverBackgroundColor: ['#fff'],
-  //       pointHoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
-  //       hoverBackgroundColor: ['#4d8278', '#A4D0AF', '#384951'],
-  //       hoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
-  //     },
-  //   ],
-  //   [
-  //     {
-  //       data: [40, 30, 30],
-  //       backgroundColor: [
-  //         'rgb(77, 130, 120, 0.5)',
-  //         'rgb(164, 208, 175, 0.5)',
-  //         'rgb(56, 73, 81, 0.5)',
-  //       ],
-  //       borderColor: ['white'],
-  //       pointBackgroundColor: ['#4d8278', '#A4D0AF', '#384951'],
-  //       pointBorderColor: ['#fff'],
-  //       pointHoverBackgroundColor: ['#fff'],
-  //       pointHoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
-  //       hoverBackgroundColor: ['#4d8278', '#A4D0AF', '#384951'],
-  //       hoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
-  //     },
-  //   ],
-  // ];
 }

@@ -41,6 +41,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   storeFavorites() {
+    this.shoppingListService.saveShoppingList();
     this.userStorageService.storeFavoritesToFireBase().subscribe();
   }
 }

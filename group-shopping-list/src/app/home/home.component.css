@@ -44,6 +44,13 @@ section {
   background-color: #a4d0af;
   transform: scale(1.5);
 }
+mat-list-item {
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
 .active {
   animation: wobble 0.75s alternate infinite;
 }
@@ -63,4 +70,7 @@ section {
   100% {
     transform: translateX(-10px);
   }
+}
+::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
+  justify-content: center;
 }

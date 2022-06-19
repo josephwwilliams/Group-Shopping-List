@@ -15,7 +15,11 @@
         <div class="hover-text">Choose file</div>
         <div class="background"></div>
       </label>
-      <input id="fileInput" type="file" (change)="onSelectFile($event)" />
+      <input
+        id="fileInput"
+        type="file"
+        (change)="onSelectFile($event); settingsForm.form.markAsDirty()"
+      />
       <!-- <img
         style="
           display: block;

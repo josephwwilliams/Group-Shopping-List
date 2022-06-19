@@ -232,26 +232,34 @@
             </mat-form-field>
           </div>
           <div class="row">
-            <mat-form-field appearance="outline">
-              <mat-label>HEIGHT</mat-label>
-              <input type="number" matInput formControlName="height" />
-            </mat-form-field>
+            <div class="col-md-6" style="width: fit-content">
+              <mat-form-field appearance="outline">
+                <mat-label>Feet</mat-label>
+                <input type="number" matInput formControlName="feet" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6" style="width: fit-content">
+              <mat-form-field appearance="outline">
+                <mat-label>Inches</mat-label>
+                <input type="number" matInput formControlName="inches" />
+              </mat-form-field>
+            </div>
           </div>
           <div class="row">
             <mat-form-field appearance="outline">
-              <mat-label>WEIGHT</mat-label>
+              <mat-label>Weight</mat-label>
               <input type="number" matInput formControlName="weight" />
             </mat-form-field>
           </div>
           <div class="row">
             <mat-form-field appearance="outline">
-              <mat-label>ACTIVITY LVL</mat-label>
+              <mat-label>Activity LVL 1-7</mat-label>
               <input type="number" matInput formControlName="activity" />
             </mat-form-field>
           </div>
           <div class="row">
             <mat-form-field appearance="outline">
-              <mat-select formControlName="gender">
+              <mat-select formControlName="gender" placeholder="Gender">
                 <mat-option
                   *ngFor="let gender of genders; let i = index"
                   [value]="gender"
@@ -328,7 +336,7 @@
               class="signUpButton"
               [disabled]="!user.valid"
             >
-              Next
+              Submit
             </button>
           </div>
         </div>
@@ -343,7 +351,7 @@
               Welcome to Healthy-U
             </div>
           </div>
-          <div class="row">
+          <div class="row justify-content-center">
             <button
               type="button"
               mat-button

@@ -14,7 +14,8 @@ export interface FormResponse {
   };
   2: {
     age: number;
-    height: number;
+    feet: number;
+    inches: number;
     weight: number;
     activity: number;
     gender: string;
@@ -26,7 +27,33 @@ export interface FormResponse {
   date: string;
   shoppingList: [];
 }
-
+export interface MacroResponse {
+  data: {
+    balanced: {
+      carbs: number;
+      fat: number;
+      protein: number;
+    };
+    calorie: number;
+    highprotein: {
+      carbs: number;
+      fat: number;
+      protein: number;
+    };
+    lowcarbs: {
+      carbs: number;
+      fat: number;
+      protein: number;
+    };
+    lowfat: {
+      carbs: number;
+      fat: number;
+      protein: number;
+    };
+    request_result: string;
+    status_code: number;
+  };
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -37,7 +64,7 @@ export class UserStorageService {
     private authService: AuthService,
     private shoppingListService: ShoppingListService
   ) {}
-  addUserToFireBase(form: FormResponse) {
+  addUserToFireBase(form: FormResponse, macros: MacroResponse) {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
@@ -47,7 +74,8 @@ export class UserStorageService {
           firstName: [form[1].firstName],
           lastName: [form[1].lastName],
           age: [form[2].age],
-          height: [form[2].height],
+          feet: [form[2].feet],
+          inches: [form[2].inches],
           weight: [form[2].weight],
           activity: [form[2].activity],
           gender: [form[2].gender],
@@ -58,6 +86,8 @@ export class UserStorageService {
             day: 'numeric',
           }),
           shoppingList: [0],
+          macros: macros.data,
+          profileImg: 'none',
         };
         let userEmail = user.email.replace('@', '').replace('.', '');
         return this.http.put(
@@ -88,6 +118,59 @@ export class UserStorageService {
         return this.http.put(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/shoppingList.json`,
           this.shoppingListService.shoppingList
+        );
+      })
+    );
+  }
+
+  saveProfilePicture(profileImg: string) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let image = JSON.stringify(profileImg);
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/profileImg.json`,
+          image
+        );
+      })
+    );
+  }
+
+  changeGender(gender: string) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/gender.json`,
+          [gender]
+        );
+      })
+    );
+  }
+
+  changeFirstName(firstName: string) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/firstName.json`,
+          [firstName]
+        );
+      })
+    );
+  }
+
+  changeLastName(lastName: string) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/lastName.json`,
+          [lastName]
         );
       })
     );
