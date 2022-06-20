@@ -78,8 +78,10 @@ form button{
 
 }
 
-.fa-brands p{
+.fa-brands a{
   font-family: 'Roboto', sans-serif;
   display: inline-block;
   padding-left: 10px;
+  text-decoration: none;
+  color: inherit;
 }
