@@ -154,13 +154,54 @@
           Manage and get ready before being in the store.
         </div>
       </div>
-      <div
-        class="col-md-6"
-        [ngClass]="{
-          active: shoppingList.length === 0
-        }"
-      >
-        <app-shopping-list></app-shopping-list>
+      <div class="col-md-6">
+        <mat-card
+          *ngFor="let item of shoppingList"
+          style="margin: 5px"
+          data-aos="fade-left"
+          data-aos-duration="1500"
+          data-aos-anchor=".mat-display-2"
+        >
+          <div
+            class="row"
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <div
+              class="col-md-2"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <img
+                class="mx-auto my-auto img-fluid"
+                style="max-height: 75px; width: auto"
+                [src]="
+                  item.image_url
+                    ? item.image_url
+                    : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
+                "
+              />
+            </div>
+            <div
+              class="col-md-7"
+              style="
+                display: flex;
+
+                justify-content: center;
+
+                align-items: center;
+              "
+            >
+              <h1 class="displaySubheading">
+                {{
+                  item.product_name ? item.product_name : item.product_name_fr
+                }}
+              </h1>
+            </div>
+          </div>
+        </mat-card>
       </div>
     </div>
   </section>
