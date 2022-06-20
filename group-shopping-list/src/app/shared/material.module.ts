@@ -23,7 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
+import { MatListModule, MatNavList } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -41,8 +41,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-import { FooterComponent } from './footer/footer.component';
-
+import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 @NgModule({
   exports: [
     A11yModule,
@@ -88,6 +87,8 @@ import { FooterComponent } from './footer/footer.component';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    MatExpansionModule,
+    MatBottomSheetModule,
   ],
   declarations: [],
 })

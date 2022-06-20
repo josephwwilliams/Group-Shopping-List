@@ -24,7 +24,10 @@ import { PlaceholderPipePipe } from './shared/pipes/placeholder-pipe.pipe';
 import { AuthComponent } from './shared/services/auth/auth.component';
 import { AuthInterceptorService } from './shared/services/auth/auth-interceptor.service';
 import { FooterComponent } from './shared/footer/footer.component';
-import { AngularBotModule } from './chat/angular-bot/angular-bot.module';
+
+import { MatNativeDateModule } from '@angular/material/core';
+import { BottomSheetComponent } from './shared/bottom-sheet/bottom-sheet.component';
+import { ChatBotComponent } from './chat-bot/chat-bot.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,8 @@ import { AngularBotModule } from './chat/angular-bot/angular-bot.module';
     PlaceholderPipePipe,
     AuthComponent,
     FooterComponent,
+    BottomSheetComponent,
+    ChatBotComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,7 @@ import { AngularBotModule } from './chat/angular-bot/angular-bot.module';
     NgChartsModule,
     NgbModule,
     ReactiveFormsModule,
-    AngularBotModule,
+    MatNativeDateModule,
   ],
   providers: [
     {
