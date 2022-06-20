@@ -67,7 +67,6 @@ export class ShoppingComponent implements OnInit {
       });
   }
   openProduct(item: Product) {
-    console.log(item);
     this.router.navigate([`product/nutrients/${item._id}`]);
   }
   pageEvent: PageEvent;

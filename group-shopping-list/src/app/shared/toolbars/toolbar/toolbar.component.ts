@@ -42,7 +42,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       .fetchUserFromFireBase()
       .subscribe((currentUser: FormResponse) => {
         this.userStorage.currentUser = currentUser;
-        console.log(this.userStorage.currentUser);
       });
   }
 

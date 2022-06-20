@@ -42,7 +42,6 @@ export class UserHomePageComponent implements OnInit {
   ngOnInit(): void {
     AOS.init();
     this.userStorage.fetchUserFromFireBase().subscribe((userData: any) => {
-      console.log(userData);
       this.profileImg = userData.profileImg;
       this.userName = userData.firstName[0];
       this.date = userData.date;

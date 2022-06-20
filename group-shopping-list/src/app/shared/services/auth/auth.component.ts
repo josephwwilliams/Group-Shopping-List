@@ -111,25 +111,21 @@ export class AuthComponent implements OnInit {
 
     authObs.subscribe(
       (resData) => {
-        console.log(resData);
         this.isLoading = false;
         if (!this.isLoginMode) {
           // this.userStorageService
           //   .addUserToFireBase(this.userDetails.value)
           //   .subscribe((res) => {
-          //     console.log(this.userDetails.value);
           //   });
         }
         this.router.navigate(['']);
       },
       (errorMessage) => {
-        console.log(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
       }
     );
     form.reset();
-    console.log(this.userDetails.value);
   }
   onSignUp() {
     const email = this.userDetails.value[3].email;
@@ -138,10 +134,8 @@ export class AuthComponent implements OnInit {
     this.isLoading = true;
     this.authService.signUp(email, password).subscribe(
       (resData) => {
-        console.log(resData);
         this.isLoading = false;
         if (!this.isLoginMode) {
-          console.log(this.userDetails.value);
           this.macroCalculator
             .getUserMacros(
               this.userDetails.value[2].age,
@@ -153,7 +147,6 @@ export class AuthComponent implements OnInit {
               this.userDetails.value[0].goal
             )
             .subscribe((macros: MacroResponse) => {
-              console.log(macros);
               this.userStorageService
 
                 .addUserToFireBase(this.userDetails.value, macros)
@@ -164,7 +157,6 @@ export class AuthComponent implements OnInit {
         }
       },
       (errorMessage) => {
-        console.log(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
       }

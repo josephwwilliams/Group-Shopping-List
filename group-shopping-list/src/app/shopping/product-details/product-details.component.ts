@@ -91,7 +91,6 @@ export class ProductDetailsComponent implements OnInit {
           this.barcode = this.route.snapshot.params['id'];
           this.selectedItem = infoItem.product;
           let dataSet = this.dataSet(infoItem);
-          console.log(this.selectedItem);
           this.pieChartData.datasets = dataSet;
           this.images = [];
           if (infoItem.product.selected_images !== null || undefined) {
@@ -122,7 +121,6 @@ export class ProductDetailsComponent implements OnInit {
         this.router.navigate([`product/nutrients/${this.barcode}`]);
         this.selectedItem = infoItem.product;
         let dataSet = this.dataSet(infoItem);
-        console.log(this.selectedItem);
         this.pieChartData.datasets = dataSet;
         this.images = [];
 

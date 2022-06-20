@@ -31,7 +31,6 @@ export class SettingsDialogComponent implements OnInit {
         this.selectedGender = userData.gender[0];
         this.firstName = userData.firstName[0];
         this.lastName = userData.lastName[0];
-        console.log(this.url);
       });
   }
   onSelectFile(event) {
