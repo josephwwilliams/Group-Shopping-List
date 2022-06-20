@@ -19,12 +19,35 @@ export class HomeComponent implements OnInit {
   loggedIn: boolean = false;
   pieChartDisplayProduct: string = 'Nutella hazelnut spread (Per Serving)';
   current: number = 0;
-  shoppingList: Product[] = [];
+  shoppingList = [
+    {
+      product_name: 'Creamy peanut butter',
+      image_url:
+        'https://images.openfoodfacts.org/images/products/001/111/001/6188/front_en.11.400.jpg',
+    },
+    {
+      product_name: 'Concord grape jelly',
+      image_url:
+        'https://images.openfoodfacts.org/images/products/001/111/067/7525/front_en.6.400.jpg',
+    },
+    {
+      product_name: 'Round top honey wheat bread',
+      image_url:
+        'https://images.openfoodfacts.org/images/products/001/111/000/2013/front_en.7.400.jpg',
+    },
+    {
+      product_name: 'Deluxe mint chocolate chip',
+      image_url:
+        'https://images.openfoodfacts.org/images/products/001/111/050/7112/front_en.7.400.jpg',
+    },
+    {
+      product_name: 'Kroger salt and vinegar potato chips',
+      image_url:
+        'https://images.openfoodfacts.org/images/products/001/111/080/9810/front_en.11.400.jpg',
+    },
+  ];
   title = 'group-shopping-list';
-  constructor(
-    private shoppingListService: ShoppingListService,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
   foodImages: string[] = [
     'https://images.pexels.com/photos/1985775/pexels-photo-1985775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     'https://images.pexels.com/photos/1346295/pexels-photo-1346295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
@@ -55,7 +78,6 @@ export class HomeComponent implements OnInit {
     let dataSet = this.dataSet();
 
     this.pieChartData.datasets = dataSet;
-    this.shoppingList = this.shoppingListService.shoppingList;
     interval(7000).subscribe(() => {
       if (this.current > 2) {
         this.current = 0;

@@ -76,7 +76,12 @@ export class ProductDetailsComponent implements OnInit {
     this.userStorageService
       .fetchUserFromFireBase()
       .subscribe((userData: any) => {
-        this.macroService.foodLog = userData.foodLog[this.date];
+        if (
+          userData.foodLog !== undefined &&
+          userData.foodLog[this.date] !== undefined
+        ) {
+          this.macroService.foodLog = userData.foodLog[this.date];
+        } else this.macroService.foodLog = [];
       });
     if (!(this.route.snapshot.params['id'] === 'search')) {
       this.showSpinner = true;

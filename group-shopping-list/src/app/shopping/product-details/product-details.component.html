@@ -70,7 +70,11 @@
         alt=""
       /> -->
     </div>
-    <div class="col-md-6" data-aos="fade-left" data-aos-duration="1500">
+    <div
+      class="col-md-6 d-flex justify-content-center"
+      data-aos="fade-left"
+      data-aos-duration="1500"
+    >
       <!-- <div
         *ngIf="selectedItem && !showSpinner && pieChartData"
         style="max-width: 600px"
@@ -89,7 +93,15 @@
           </div>
         </div>
       </div> -->
-      <mat-card style="text-align: center; margin: 20px; height: 500px">
+      <mat-card
+        style="
+          text-align: center;
+          margin: 20px;
+          height: fit-content;
+          max-height: 500px;
+          min-width: 300px;
+        "
+      >
         <mat-card-subtitle style="text-align: left">{{
           selectedItem.brands
         }}</mat-card-subtitle>
@@ -116,7 +128,7 @@
         <mat-card-content>
           <mat-accordion>
             <mat-expansion-panel
-              style="overflow-y: scroll; max-height: 250px"
+              style="overflow-y: scroll; max-height: 275px"
               *ngIf="selectedItem.ingredients_ids_debug"
             >
               <mat-expansion-panel-header style="text-align: center">
@@ -141,28 +153,32 @@
           </mat-accordion>
         </mat-card-content>
       </mat-card>
-      <mat-card style="height: 90px; margin: 20px">
-        <mat-card-actions style="text-align: left">
+      <mat-card style="height: fit-content; margin: 20px; width: fit-content">
+        <mat-card-actions style="text-align: center">
           <button
             class="addToShoppingList"
             mat-raised-button
             aria-label="Example icon button with a shopping icon"
             (click)="addToShoppingList()"
+            style="margin: 20px"
           >
+            Add to List
             <span class="material-icons"> shopping_basket </span>
           </button>
 
           <button
             class="addToShoppingList"
+            style="margin: 20px"
             mat-raised-button
             aria-label="Example icon button with a cookie"
             (click)="logFood()"
             [disabled]="numberOfGrams < 1 || numberOfGrams === undefined"
           >
+            Log Food
             <span class="material-icons"> cookie </span>
           </button>
           <mat-form-field appearance="outline" style="width: 100px">
-            <mat-label>Log Food(g)</mat-label>
+            <mat-label>Grams</mat-label>
             <input [(ngModel)]="numberOfGrams" matInput placeholder="0" />
           </mat-form-field>
         </mat-card-actions>
