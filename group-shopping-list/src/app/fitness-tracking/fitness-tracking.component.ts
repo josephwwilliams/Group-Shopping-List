@@ -5,6 +5,7 @@ import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import * as AOS from 'aos';
 import { UserStorageService } from '../shared/services/auth/user-storage.service';
 import { Product } from '../shared/interface/product';
+import { MacroCalculatorService } from '../shared/services/macro-calculator.service';
 
 @Component({
   selector: 'app-fitness-tracking',
@@ -23,7 +24,10 @@ export class FitnessTrackingComponent implements OnInit {
   value: number = 0;
   date: string;
   userDataSet;
-  constructor(private userStorageService: UserStorageService) {}
+  constructor(
+    private userStorageService: UserStorageService,
+    private macroService: MacroCalculatorService
+  ) {}
 
   ngOnInit(): void {
     this.date = new Date().toLocaleDateString('en-us', {
@@ -36,17 +40,19 @@ export class FitnessTrackingComponent implements OnInit {
     this.userStorageService
       .fetchUserFromFireBase()
       .subscribe((userData: any) => {
+        this.macroService.foodLog = userData.foodLog[this.date];
         this.totalCalories = userData.macros.calorie.toFixed(0);
         this.totalCarbs = userData.macros.balanced.carbs.toFixed(0);
         this.totalFats = userData.macros.balanced.fat.toFixed(0);
         this.totalProteins = userData.macros.balanced.protein.toFixed(0);
-        console.log(userData);
         userData.foodLog[this.date].forEach((food: any) => {
           this.currentCalories += food.calories;
           this.currentCarbs += food.macros.carbs;
           this.currentFats += food.macros.fats;
           this.currentProteins += food.macros.proteins;
-          this.value = (this.currentCalories / this.totalCalories) * 100;
+          this.value = Math.round(
+            (this.currentCalories / this.totalCalories) * 100
+          );
           let dataSet = this.dataSet();
           this.pieChartData.datasets = dataSet;
           this.chart?.update();

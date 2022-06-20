@@ -17,13 +17,19 @@
     >
       Fitness Tab
     </div>
+
+    <div class="container">
+      <h1 class="displaySubheading">Log Date : {{ date }}</h1>
+    </div>
+
     <h1 class="displaySubheading" *ngIf="currentCalories === 0">0%</h1>
     <h1 class="displaySubheading" *ngIf="currentCalories > 0">
       {{ value | number }}%
     </h1>
     <mat-progress-bar mode="buffer" [value]="value"></mat-progress-bar>
     <h1 class="displaySubheading">
-      {{ currentCalories }} out of {{ totalCalories }} calories
+      {{ currentCalories | number }} out of
+      {{ totalCalories | number }} calories
     </h1>
   </div>
   <div class="row">
@@ -49,14 +55,16 @@
       <mat-divider></mat-divider>
       <mat-list>
         <mat-list-item class="mat-headline displaySubheading">
-          Carbs : {{ currentCarbs }} out of {{ totalCarbs }}</mat-list-item
+          Carbs : {{ currentCarbs | number }} out of
+          {{ totalCarbs | number }}</mat-list-item
         >
         <mat-list-item class="mat-headline displaySubheading">
-          Fats : {{ currentFats }} out of {{ totalFats }}</mat-list-item
+          Fats : {{ currentFats | number }} out of
+          {{ totalFats | number }}</mat-list-item
         >
         <mat-list-item class="mat-headline displaySubheading">
-          Protiens : {{ currentProteins }} out of
-          {{ totalProteins }}</mat-list-item
+          Protiens : {{ currentProteins | number }} out of
+          {{ totalProteins | number }}</mat-list-item
         >
       </mat-list>
     </div>

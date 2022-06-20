@@ -50,8 +50,7 @@ export class ShoppingListService {
       this._snackBar.openFromComponent(PopUpComponent, {
         duration: 3000,
         data: {
-          message:
-            'Already added to List! Go to shopping list to edit quantity',
+          message: 'Already added to Shopping List!',
         },
       });
     }

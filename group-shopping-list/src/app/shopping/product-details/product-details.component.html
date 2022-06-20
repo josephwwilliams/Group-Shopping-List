@@ -115,7 +115,10 @@
         > -->
         <mat-card-content>
           <mat-accordion>
-            <mat-expansion-panel style="overflow-y: scroll; max-height: 300px">
+            <mat-expansion-panel
+              style="overflow-y: scroll; max-height: 250px"
+              *ngIf="selectedItem.ingredients_ids_debug"
+            >
               <mat-expansion-panel-header style="text-align: center">
                 <div class="mat-headline displaySubheading">
                   {{ selectedItem.ingredients_ids_debug.length }} Ingredients
@@ -138,7 +141,7 @@
           </mat-accordion>
         </mat-card-content>
       </mat-card>
-      <mat-card style="height: 100px; margin: 20px">
+      <mat-card style="height: 90px; margin: 20px">
         <mat-card-actions style="text-align: left">
           <button
             class="addToShoppingList"
