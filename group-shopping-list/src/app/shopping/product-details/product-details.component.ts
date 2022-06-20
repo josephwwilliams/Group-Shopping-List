@@ -9,6 +9,8 @@ import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ShoppingListService } from 'src/app/shared/services/shopping-list.service';
 import * as AOS from 'aos';
+import { MacroCalculatorService } from 'src/app/shared/services/macro-calculator.service';
+import { UserStorageService } from 'src/app/shared/services/auth/user-storage.service';
 
 @Component({
   selector: 'app-product-details',
@@ -17,6 +19,7 @@ import * as AOS from 'aos';
 })
 export class ProductDetailsComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  numberOfGrams: number;
   showSpinner: boolean = false;
   barcode: string = '';
   selectedItem: Product;
@@ -53,7 +56,9 @@ export class ProductDetailsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private productInfoService: ProductInfoService,
-    private shoppingListService: ShoppingListService
+    private shoppingListService: ShoppingListService,
+    private macroService: MacroCalculatorService,
+    private userStorageService: UserStorageService
   ) {}
 
   ngOnInit(): void {
@@ -124,6 +129,28 @@ export class ProductDetailsComponent implements OnInit {
   addToShoppingList() {
     this.shoppingListService.addToShoppingList(this.selectedItem);
   }
+  logFood() {
+    this.selectedItem['numberOfGrams'] = this.numberOfGrams;
+    this.selectedItem['calories'] = Math.round(
+      (this.selectedItem.nutriments['energy-kcal_100g'] / 100) *
+        this.numberOfGrams
+    );
+    this.selectedItem['macros'] = {
+      carbs: Math.round(
+        (this.selectedItem.nutriments.carbohydrates_100g / 100) *
+          this.numberOfGrams
+      ),
+      proteins: Math.round(
+        (this.selectedItem.nutriments.proteins_100g / 100) * this.numberOfGrams
+      ),
+      fats: Math.round(
+        (this.selectedItem.nutriments.fat_100g / 100) * this.numberOfGrams
+      ),
+    };
+    this.macroService.foodLog.push(this.selectedItem);
+    this.userStorageService.storeFoodLog().subscribe();
+  }
+
   dataSet(infoItem: ItemResponse) {
     return [
       {

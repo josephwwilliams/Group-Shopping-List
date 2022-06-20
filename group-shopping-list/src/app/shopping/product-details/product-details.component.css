@@ -36,3 +36,21 @@ img {
   border-radius: 30px;
   border: 3px solid rgb(77, 130, 120, 0.5);
 }
+::ng-deep.mat-form-field-ripple {
+  background-color: green !important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #a4d0af;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #384951 !important;
+}
+::ng-deep
+  .mat-form-field-appearance-outline.mat-focused
+  .mat-form-field-outline {
+  color: #4d8278;
+}
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}

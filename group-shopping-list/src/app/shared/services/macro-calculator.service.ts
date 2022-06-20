@@ -1,10 +1,12 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Product } from '../interface/product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MacroCalculatorService {
+  foodLog: Product[] = [];
   constructor(private http: HttpClient) {}
 
   getUserMacros(

@@ -4,6 +4,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import * as AOS from 'aos';
 import { UserStorageService } from '../shared/services/auth/user-storage.service';
+import { Product } from '../shared/interface/product';
 
 @Component({
   selector: 'app-fitness-tracking',
@@ -20,9 +21,17 @@ export class FitnessTrackingComponent implements OnInit {
   totalProteins: number = 0;
   currentProteins: number = 0;
   value: number = 0;
+  date: string;
+  userDataSet;
   constructor(private userStorageService: UserStorageService) {}
 
   ngOnInit(): void {
+    this.date = new Date().toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    });
+    this.date = this.date.replace('/', '-').replace('/', '-');
     AOS.init();
     this.userStorageService
       .fetchUserFromFireBase()
@@ -31,7 +40,17 @@ export class FitnessTrackingComponent implements OnInit {
         this.totalCarbs = userData.macros.balanced.carbs.toFixed(0);
         this.totalFats = userData.macros.balanced.fat.toFixed(0);
         this.totalProteins = userData.macros.balanced.protein.toFixed(0);
-        this.value = (this.currentCalories / this.totalCalories) * 100;
+        console.log(userData);
+        userData.foodLog[this.date].forEach((food: any) => {
+          this.currentCalories += food.calories;
+          this.currentCarbs += food.macros.carbs;
+          this.currentFats += food.macros.fats;
+          this.currentProteins += food.macros.proteins;
+          this.value = (this.currentCalories / this.totalCalories) * 100;
+          let dataSet = this.dataSet();
+          this.pieChartData.datasets = dataSet;
+          this.chart?.update();
+        });
       });
     let dataSet = this.dataSet();
     this.pieChartData.datasets = dataSet;
@@ -62,7 +81,7 @@ export class FitnessTrackingComponent implements OnInit {
   dataSet() {
     return [
       {
-        data: [55, 15, 30],
+        data: [this.currentCarbs, this.currentFats, this.currentProteins],
         backgroundColor: [
           'rgb(77, 130, 120, 0.5)',
           'rgb(164, 208, 175, 0.5)',

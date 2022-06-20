@@ -89,7 +89,7 @@
           </div>
         </div>
       </div> -->
-      <mat-card style="text-align: center; margin: 20px">
+      <mat-card style="text-align: center; margin: 20px; height: 500px">
         <mat-card-subtitle style="text-align: left">{{
           selectedItem.brands
         }}</mat-card-subtitle>
@@ -102,8 +102,8 @@
             }}
           </div>
         </mat-card-title>
-        <div class="mat-headline displaySubheading">Ingredients:</div>
-        <div
+
+        <!-- <div
           class="mat-headline displaySubheading"
           style="
             height: 300px;
@@ -112,20 +112,33 @@
             border-radius: 5px;
             border: 1px solid rgb(77, 130, 120, 0.2);
           "
-        >
-          <p
-            *ngFor="
-              let i of selectedItem.ingredients_ids_debug;
-              let current = index
-            "
-            style="margin: 10px"
-          >
-            <span style="color: rgb(77, 130, 120); font-size: xx-large">{{
-              current + 1
-            }}</span>
-            . {{ i }}
-          </p>
-        </div>
+        > -->
+        <mat-card-content>
+          <mat-accordion>
+            <mat-expansion-panel style="overflow-y: scroll; max-height: 300px">
+              <mat-expansion-panel-header style="text-align: center">
+                <div class="mat-headline displaySubheading">
+                  {{ selectedItem.ingredients_ids_debug.length }} Ingredients
+                </div>
+              </mat-expansion-panel-header>
+              <p
+                *ngFor="
+                  let i of selectedItem.ingredients_ids_debug;
+                  let current = index
+                "
+                class="mat-headline displaySubheading"
+                style="margin: 10px; text-align: left"
+              >
+                <span style="color: rgb(77, 130, 120); font-size: xx-large">{{
+                  current + 1
+                }}</span>
+                . {{ i }}
+              </p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+      </mat-card>
+      <mat-card style="height: 100px; margin: 20px">
         <mat-card-actions style="text-align: left">
           <button
             class="addToShoppingList"
@@ -135,13 +148,20 @@
           >
             <span class="material-icons"> shopping_basket </span>
           </button>
+
           <button
             class="addToShoppingList"
             mat-raised-button
             aria-label="Example icon button with a cookie"
+            (click)="logFood()"
+            [disabled]="numberOfGrams < 1 || numberOfGrams === undefined"
           >
             <span class="material-icons"> cookie </span>
           </button>
+          <mat-form-field appearance="outline" style="width: 100px">
+            <mat-label>Log Food(g)</mat-label>
+            <input [(ngModel)]="numberOfGrams" matInput placeholder="0" />
+          </mat-form-field>
         </mat-card-actions>
       </mat-card>
     </div>

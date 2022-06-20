@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { exhaustMap, take } from 'rxjs';
+import { Product } from '../../interface/product';
+import { MacroCalculatorService } from '../macro-calculator.service';
 import { ShoppingListService } from '../shopping-list.service';
 import { AuthService } from './auth.service';
 
@@ -62,7 +64,8 @@ export class UserStorageService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private shoppingListService: ShoppingListService
+    private shoppingListService: ShoppingListService,
+    private macroService: MacroCalculatorService
   ) {}
   addUserToFireBase(form: FormResponse, macros: MacroResponse) {
     return this.authService.user.pipe(
@@ -171,6 +174,25 @@ export class UserStorageService {
         return this.http.put(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/lastName.json`,
           [lastName]
+        );
+      })
+    );
+  }
+
+  storeFoodLog() {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        let date = new Date().toLocaleDateString('en-us', {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        });
+        let alteredDate = date.replace('/', '-').replace('/', '-');
+        return this.http.put(
+          `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/foodLog/${alteredDate}.json`,
+          this.macroService.foodLog
         );
       })
     );
