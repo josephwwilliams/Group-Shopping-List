@@ -11,6 +11,8 @@ import { ShoppingListService } from 'src/app/shared/services/shopping-list.servi
 import * as AOS from 'aos';
 import { MacroCalculatorService } from 'src/app/shared/services/macro-calculator.service';
 import { UserStorageService } from 'src/app/shared/services/auth/user-storage.service';
+import { PopUpComponent } from 'src/app/shared/pop-up/pop-up.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-details',
@@ -24,6 +26,7 @@ export class ProductDetailsComponent implements OnInit {
   barcode: string = '';
   selectedItem: Product;
   images: string[] = [];
+  date: string;
 
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -58,11 +61,23 @@ export class ProductDetailsComponent implements OnInit {
     private productInfoService: ProductInfoService,
     private shoppingListService: ShoppingListService,
     private macroService: MacroCalculatorService,
-    private userStorageService: UserStorageService
+    private userStorageService: UserStorageService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     AOS.init();
+    this.date = new Date().toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    });
+    this.date = this.date.replace('/', '-').replace('/', '-');
+    this.userStorageService
+      .fetchUserFromFireBase()
+      .subscribe((userData: any) => {
+        this.macroService.foodLog = userData.foodLog[this.date];
+      });
     if (!(this.route.snapshot.params['id'] === 'search')) {
       this.showSpinner = true;
       this.productInfoService
@@ -132,8 +147,13 @@ export class ProductDetailsComponent implements OnInit {
   logFood() {
     this.selectedItem['numberOfGrams'] = this.numberOfGrams;
     this.selectedItem['calories'] = Math.round(
-      (this.selectedItem.nutriments['energy-kcal_100g'] / 100) *
-        this.numberOfGrams
+      (this.selectedItem.nutriments.carbohydrates_100g / 100) *
+        this.numberOfGrams *
+        4 +
+        (this.selectedItem.nutriments.proteins_100g / 100) *
+          this.numberOfGrams *
+          4 +
+        (this.selectedItem.nutriments.fat_100g / 100) * this.numberOfGrams * 4
     );
     this.selectedItem['macros'] = {
       carbs: Math.round(
@@ -147,8 +167,20 @@ export class ProductDetailsComponent implements OnInit {
         (this.selectedItem.nutriments.fat_100g / 100) * this.numberOfGrams
       ),
     };
+    if (this.macroService.foodLog === undefined) {
+      this.macroService.foodLog = [];
+    }
     this.macroService.foodLog.push(this.selectedItem);
     this.userStorageService.storeFoodLog().subscribe();
+    this._snackBar.openFromComponent(PopUpComponent, {
+      duration: 1500,
+      data: {
+        loggedItem: {
+          item: this.selectedItem,
+          numberOfGrams: this.numberOfGrams,
+        },
+      },
+    });
   }
 
   dataSet(infoItem: ItemResponse) {

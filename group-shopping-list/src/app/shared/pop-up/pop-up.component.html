@@ -1,11 +1,9 @@
-<div class="container" *ngIf="!data.copied && !data.saveMessage">
+<div
+  class="container"
+  *ngIf="!data.copied && !data.saveMessage && !data.loggedItem"
+>
   <div class="div" *ngIf="data.message">
-    <div class="row" style="text-align: center">
-      {{ data.message
-      }}<mat-icon style="cursor: pointer" routerLink="shopping-list"
-        >shopping_cart</mat-icon
-      >
-    </div>
+    {{ data.message }}
   </div>
   <div *ngIf="data.item !== undefined">
     {{
@@ -29,5 +27,11 @@
 <div class="container" *ngIf="data.saveMessage">
   <div>
     {{ data.saveMessage }}
+  </div>
+</div>
+<div class="container" *ngIf="data.loggedItem">
+  <div>
+    You just logged {{ data.loggedItem.numberOfGrams }} grams of
+    {{ data.loggedItem.item.product_name }}!
   </div>
 </div>
