@@ -24,18 +24,6 @@
         type="file"
         (change)="onSelectFile($event); settingsForm.form.markAsDirty()"
       />
-      <!-- <img
-        style="
-          display: block;
-          margin: 0 auto;
-          height: 50px;
-          width: auto;
-          border-radius: 50%;
-        "
-        src="/assets/images/placeholders/userPlaceholder.png"
-        alt=""
-      />
-    </div> -->
     </div>
     <div class="col-md-6">
       <div class="row mat-headline displaySubheading">Settings</div>
@@ -96,16 +84,6 @@
           >
             {{ changed ? "Changes Saved" : "Save Changes" }}
           </button>
-
-          <!-- <button
-            style="margin: 10px"
-            mat-raised-button
-            color="warn"
-            type="button"
-            (click)="summonerName.value = username"
-          >
-            Reset
-          </button> -->
         </div>
       </div>
       <mat-divider></mat-divider>

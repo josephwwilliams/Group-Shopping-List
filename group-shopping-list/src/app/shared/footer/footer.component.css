@@ -1,11 +1,4 @@
-/* *{
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
-} */
-
-.footer{
+.footer {
   margin-top: 0px;
   width: 100%;
   padding: 100px 15%;
@@ -13,32 +6,29 @@
   color: #efefef;
   display: flex;
 }
-.footer div{
+.footer div {
   text-align: center;
-
 }
-.col-2{
-flex-grow: 2;
-text-align: center;
-justify-content: space-evenly ;
-
+.col-2 {
+  flex-grow: 2;
+  text-align: center;
+  justify-content: space-evenly;
 }
 
-.footer div h3{
+.footer div h3 {
   font-weight: 300;
   margin-bottom: 30px;
   letter-spacing: 1px;
 }
 
-.col-1 a{
-display: block;
-text-decoration: none;
-color: #efefef;
-margin-bottom: 10px;
-
+.col-1 a {
+  display: block;
+  text-decoration: none;
+  color: #efefef;
+  margin-bottom: 10px;
 }
 
-form input{
+form input {
   width: 400px;
   height: 45px;
   border-radius: 4px;
@@ -49,37 +39,34 @@ form input{
   border: none;
 }
 
-form button{
- background: transparent;
- border: 2px solid #fff;
- color: #fff;
- border-radius: 30px;
- padding: 10px 30px;
- font-size: 15px;
- cursor: pointer;
-
+form button {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 30px;
+  font-size: 15px;
+  cursor: pointer;
 }
-.div footer{
+.div footer {
   margin-top: 0;
 }
-.icons{
+.icons {
   margin-top: 30px;
 }
-.icons i{
+.icons i {
   font-size: 22px;
   margin: 10px;
   cursor: pointer;
-
 }
 
-.fa-brands{
+.fa-brands {
   margin: 10px;
   cursor: pointer;
-
 }
 
-.fa-brands a{
-  font-family: 'Roboto', sans-serif;
+.fa-brands a {
+  font-family: "Roboto", sans-serif;
   display: inline-block;
   padding-left: 10px;
   text-decoration: none;

@@ -156,7 +156,7 @@ export class ProductDetailsComponent implements OnInit {
         (this.selectedItem.nutriments.proteins_100g / 100) *
           this.numberOfGrams *
           4 +
-        (this.selectedItem.nutriments.fat_100g / 100) * this.numberOfGrams * 4
+        (this.selectedItem.nutriments.fat_100g / 100) * this.numberOfGrams * 9
     );
     this.selectedItem['macros'] = {
       carbs: Math.round(
