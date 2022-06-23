@@ -4,32 +4,21 @@
   padding: 100px 15%;
   background: #333;
   color: #efefef;
-  display: flex;
 }
-.footer div {
-  text-align: center;
-}
-.col-2 {
-  flex-grow: 2;
-  text-align: center;
-  justify-content: space-evenly;
-}
-
-.footer div h3 {
-  font-weight: 300;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-}
-
-.col-1 a {
-  display: block;
+a {
+  color: inherit;
   text-decoration: none;
-  color: #efefef;
-  margin-bottom: 10px;
 }
-
+.icons {
+  transform: scale(2);
+}
+.fab {
+  margin: 5px;
+}
+.col-3 {
+  text-align: center;
+}
 form input {
-  width: 400px;
   height: 45px;
   border-radius: 4px;
   text-align: center;
@@ -38,37 +27,18 @@ form input {
   outline: none;
   border: none;
 }
-
-form button {
-  background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-  border-radius: 30px;
-  padding: 10px 30px;
-  font-size: 15px;
-  cursor: pointer;
+.displayHeading {
+  text-align: center;
+  font-family: "Lora", serif;
+  color: #ffffff;
 }
-.div footer {
-  margin-top: 0;
+.displaySubheading {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  color: #ffffff;
 }
-.icons {
-  margin-top: 30px;
-}
-.icons i {
-  font-size: 22px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.fa-brands {
-  margin: 10px;
-  cursor: pointer;
-}
-
-.fa-brands a {
-  font-family: "Roboto", sans-serif;
-  display: inline-block;
-  padding-left: 10px;
-  text-decoration: none;
-  color: inherit;
+.useful div {
+  display: block;
+  margin: 5px;
 }
