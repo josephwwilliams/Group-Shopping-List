@@ -18,8 +18,27 @@
       Fitness Tab
     </div>
 
-    <div class="container">
-      <h1 class="displaySubheading">Log Date : {{ date }}</h1>
+    <div class="container" style="text-align: center">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="displaySubheading">Log Date : {{ date }}</h1>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input
+              (dateInput)="OnDateChange($event.value)"
+              matInput
+              [matDatepicker]="picker"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
 
     <h1 class="displaySubheading" *ngIf="currentCalories === 0">0%</h1>

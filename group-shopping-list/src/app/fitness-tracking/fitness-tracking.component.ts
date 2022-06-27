@@ -4,8 +4,8 @@ import { BaseChartDirective } from 'ng2-charts';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import * as AOS from 'aos';
 import { UserStorageService } from '../shared/services/auth/user-storage.service';
-import { Product } from '../shared/interface/product';
 import { MacroCalculatorService } from '../shared/services/macro-calculator.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-fitness-tracking',
@@ -23,7 +23,6 @@ export class FitnessTrackingComponent implements OnInit {
   currentProteins: number = 0;
   value: number = 0;
   date: string;
-  userDataSet;
   constructor(
     private userStorageService: UserStorageService,
     private macroService: MacroCalculatorService
@@ -107,5 +106,45 @@ export class FitnessTrackingComponent implements OnInit {
         hoverBorderColor: ['#4d8278', '#A4D0AF', '#384951'],
       },
     ];
+  }
+  OnDateChange(selectedDate: string) {
+    this.date = moment(selectedDate).format('M-D-YYYY');
+    this.userStorageService
+      .fetchUserFromFireBase()
+      .subscribe((userData: any) => {
+        this.totalCalories = 0;
+        this.currentCalories = 0;
+        this.totalCarbs = 0;
+        this.currentCarbs = 0;
+        this.totalFats = 0;
+        this.currentFats = 0;
+        this.totalProteins = 0;
+        this.currentProteins = 0;
+        this.value = 0;
+        if (
+          userData.foodLog !== undefined &&
+          userData.foodLog[this.date] !== undefined
+        ) {
+          this.macroService.foodLog = userData.foodLog[this.date];
+          this.totalCalories = userData.macros.calorie.toFixed(0);
+          this.totalCarbs = userData.macros.balanced.carbs.toFixed(0);
+          this.totalFats = userData.macros.balanced.fat.toFixed(0);
+          this.totalProteins = userData.macros.balanced.protein.toFixed(0);
+          userData.foodLog[this.date].forEach((food: any) => {
+            this.currentCalories += food.calories;
+            this.currentCarbs += food.macros.carbs;
+            this.currentFats += food.macros.fats;
+            this.currentProteins += food.macros.proteins;
+            this.value = Math.round(
+              (this.currentCalories / this.totalCalories) * 100
+            );
+            let dataSet = this.dataSet();
+            this.pieChartData.datasets = dataSet;
+            this.chart?.update();
+          });
+        } else this.macroService.foodLog = [];
+      });
+    let dataSet = this.dataSet();
+    this.pieChartData.datasets = dataSet;
   }
 }

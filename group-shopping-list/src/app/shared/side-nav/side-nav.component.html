@@ -1,43 +1,57 @@
 <div class="container">
-  <div class="row">
-    <button
-      routerLinkActive="active-link"
-      mat-button
-      class="mat-display-1"
-      routerLink="home"
+  <div class="row" routerLink="home">
+    <div class="col-md-4">
+      <button routerLinkActive="active-link" mat-button class="mat-display-1">
+        <span class="material-icons"> home </span>
+      </button>
+    </div>
+    <div
+      class="col-md-8 displayHeading mat-headline"
+      routerLinkActive="active-link-name"
     >
-      <span class="material-icons"> home </span>
-    </button>
+      <span> Home</span>
+    </div>
   </div>
-  <div class="row">
-    <button
-      mat-button
-      class="mat-display-1"
-      routerLink="shopping"
-      routerLinkActive="active-link"
+  <div class="row" routerLink="shopping">
+    <div class="col-md-4">
+      <button mat-button class="mat-display-1" routerLinkActive="active-link">
+        <span class="material-icons"> store </span>
+      </button>
+    </div>
+    <div
+      class="col-md-8 displayHeading mat-headline"
+      routerLinkActive="active-link-name"
     >
-      <span class="material-icons"> store </span>
-    </button>
+      <span> Shopping</span>
+    </div>
   </div>
-  <div class="row" *ngIf="router.url">
-    <button
-      mat-button
-      class="mat-display-1"
+  <div class="row" [routerLink]="'product/nutrients/search'" *ngIf="router.url">
+    <div class="col-md-4">
+      <button mat-button class="mat-display-1" routerLinkActive="active-link">
+        <span class="material-icons"> menu_book </span>
+        <a [routerLink]="['product/nutrients']" style="display: none"></a>
+      </button>
+    </div>
+    <div
       [routerLink]="'product/nutrients/search'"
-      routerLinkActive="active-link"
+      routerLinkActive="active-link-name"
+      class="col-md-8 displayHeading mat-headline"
     >
-      <span class="material-icons"> menu_book </span>
+      <span> Nutrients</span>
       <a [routerLink]="['product/nutrients']" style="display: none"></a>
-    </button>
+    </div>
   </div>
-  <div class="row">
-    <button
-      mat-button
-      class="mat-display-1"
-      routerLink="fitness"
-      routerLinkActive="active-link"
+  <div class="row" routerLink="fitness">
+    <div class="col-md-4">
+      <button mat-button class="mat-display-1" routerLinkActive="active-link">
+        <span class="material-icons"> monitor_heart </span>
+      </button>
+    </div>
+    <div
+      class="col-md-8 displayHeading mat-headline"
+      routerLinkActive="active-link-name"
     >
-      <span class="material-icons"> monitor_heart </span>
-    </button>
+      <span> Fitness</span>
+    </div>
   </div>
 </div>
