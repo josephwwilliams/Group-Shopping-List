@@ -107,6 +107,13 @@ export class FitnessTrackingComponent implements OnInit {
       },
     ];
   }
+  emptyDataSet() {
+    return [
+      {
+        data: [0, 0, 0],
+      },
+    ];
+  }
   OnDateChange(selectedDate: string) {
     this.date = moment(selectedDate).format('M-D-YYYY');
     this.userStorageService
@@ -121,6 +128,9 @@ export class FitnessTrackingComponent implements OnInit {
         this.totalProteins = 0;
         this.currentProteins = 0;
         this.value = 0;
+        let dataSet = this.emptyDataSet();
+        this.pieChartData.datasets = dataSet;
+        this.chart?.update();
         if (
           userData.foodLog !== undefined &&
           userData.foodLog[this.date] !== undefined

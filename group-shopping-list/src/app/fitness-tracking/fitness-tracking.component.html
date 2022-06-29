@@ -92,6 +92,12 @@
       data-aos="fade-left"
       data-aos-duration="1500"
       data-aos-anchor=".mat-display-2"
+      *ngIf="
+        pieChartData.datasets[0].data[0] +
+          pieChartData.datasets[0].data[1] +
+          pieChartData.datasets[0].data[2] !==
+        0
+      "
     >
       <div class="chart">
         <canvas
