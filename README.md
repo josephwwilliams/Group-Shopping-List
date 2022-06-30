@@ -1,2 +1,2 @@
-# Group Shopping List
+# Healthy-U
 https://healthyuapp.herokuapp.com/home
