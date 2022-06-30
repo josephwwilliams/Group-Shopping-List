@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "group-shopping-list": {
+    "healthy-u": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/group-shopping-list",
+            "outputPath": "dist/healthy-u",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "group-shopping-list:build:production"
+              "browserTarget": "healthy-u:build:production"
             },
             "development": {
-              "browserTarget": "group-shopping-list:build:development"
+              "browserTarget": "healthy-u:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "group-shopping-list:build"
+            "browserTarget": "healthy-u:build"
           }
         },
         "test": {
@@ -96,5 +96,7 @@
       }
     }
   },
-  "defaultProject": "group-shopping-list"
+  "cli": {
+    "analytics": false
+  }
 }

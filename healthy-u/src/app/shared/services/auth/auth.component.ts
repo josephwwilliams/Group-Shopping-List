@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormArray,
-  FormBuilder,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   NgForm,
   Validators,
 } from '@angular/forms';
@@ -20,7 +20,7 @@ import { MacroCalculatorService } from '../macro-calculator.service';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
-  public user: FormGroup;
+  public user: UntypedFormGroup;
   isLoginMode = true;
   isLoading = false;
   error: string = null;
@@ -34,12 +34,12 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userStorageService: UserStorageService,
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private macroCalculator: MacroCalculatorService
   ) {}
 
-  get userDetails(): FormArray {
-    return this.user.get('userDetails') as FormArray;
+  get userDetails(): UntypedFormArray {
+    return this.user.get('userDetails') as UntypedFormArray;
   }
 
   ngOnInit(): void {
