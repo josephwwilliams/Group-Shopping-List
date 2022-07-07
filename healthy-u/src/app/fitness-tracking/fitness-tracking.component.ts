@@ -23,6 +23,8 @@ export class FitnessTrackingComponent implements OnInit {
   currentProteins: number = 0;
   value: number = 0;
   date: string;
+  add: string = '+';
+  subtract: string = '-';
   constructor(
     private userStorageService: UserStorageService,
     private macroService: MacroCalculatorService
@@ -114,8 +116,14 @@ export class FitnessTrackingComponent implements OnInit {
       },
     ];
   }
-  OnDateChange(selectedDate: string) {
-    this.date = moment(selectedDate).format('M-D-YYYY');
+  OnDateChange(selectedDate: string, method: string) {
+    if (method === null) {
+      this.date = moment(selectedDate).format('M-D-YYYY');
+    } else if (method === '-') {
+      this.date = moment(this.date).subtract(1, 'day').format('M-D-YYYY');
+    } else if (method === '+')
+      this.date = moment(this.date).add(1, 'day').format('M-D-YYYY');
+    // this.date = moment(selectedDate).format('M-D-YYYY');
     this.userStorageService
       .fetchUserFromFireBase()
       .subscribe((userData: any) => {
