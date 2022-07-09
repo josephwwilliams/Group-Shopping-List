@@ -25,6 +25,7 @@ export class FitnessTrackingComponent implements OnInit {
   date: string;
   add: string = '+';
   subtract: string = '-';
+  logSearching: boolean = false;
   constructor(
     private userStorageService: UserStorageService,
     private macroService: MacroCalculatorService
@@ -117,13 +118,13 @@ export class FitnessTrackingComponent implements OnInit {
     ];
   }
   OnDateChange(selectedDate: string, method: string) {
+    this.logSearching = true;
     if (method === null) {
       this.date = moment(selectedDate).format('M-D-YYYY');
     } else if (method === '-') {
       this.date = moment(this.date).subtract(1, 'day').format('M-D-YYYY');
     } else if (method === '+')
       this.date = moment(this.date).add(1, 'day').format('M-D-YYYY');
-    // this.date = moment(selectedDate).format('M-D-YYYY');
     this.userStorageService
       .fetchUserFromFireBase()
       .subscribe((userData: any) => {
@@ -161,6 +162,7 @@ export class FitnessTrackingComponent implements OnInit {
             this.chart?.update();
           });
         } else this.macroService.foodLog = [];
+        this.logSearching = false;
       });
     let dataSet = this.dataSet();
     this.pieChartData.datasets = dataSet;

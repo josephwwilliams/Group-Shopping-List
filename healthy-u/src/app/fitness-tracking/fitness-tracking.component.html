@@ -24,15 +24,18 @@
           <h1 class="displaySubheading">Log Date : {{ date }}</h1>
         </div>
         <div class="col-md-6">
-          <span
-            class="material-icons"
-            style="cursor: pointer"
+          <button
+            [disabled]="logSearching"
+            mat-mini-fab
+            style="cursor: pointer; margin: 20px"
             (click)="OnDateChange(date, subtract)"
+            color="white"
+            aria-label="Example icon button with a plus one icon"
           >
-            arrow_back_ios
-          </span>
+            <mat-icon style="color: #e4efe2">arrow_back_ios_new</mat-icon>
+          </button>
           <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
+            <mat-label>{{ date }}</mat-label>
             <input
               (dateInput)="OnDateChange($event.value, null)"
               matInput
@@ -43,15 +46,17 @@
               [for]="picker"
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-hint>Date : {{ date }}</mat-hint>
           </mat-form-field>
-          <span
-            class="material-icons"
-            style="cursor: pointer"
+          <button
+            [disabled]="logSearching"
+            mat-mini-fab
+            style="cursor: pointer; margin: 20px"
             (click)="OnDateChange(date, add)"
+            color="white"
+            aria-label="Example icon button with a plus one icon"
           >
-            arrow_forward_ios
-          </span>
+            <mat-icon style="color: #e4efe2">arrow_forward_ios_new</mat-icon>
+          </button>
         </div>
       </div>
     </div>
@@ -78,29 +83,42 @@
         class="mat-display-3"
         style="
           text-align: center;
-
           font-family: 'Lora', serif;
           padding-top: 80px;
-
           color: #384951;
         "
       >
         Current Macros for the day
       </div>
       <mat-divider></mat-divider>
-      <mat-list>
-        <mat-list-item class="mat-headline displaySubheading">
+      <mat-list class="displaySubheading">
+        <mat-list-item class="displaySubheading">
           Carbs : {{ currentCarbs | number }} out of
           {{ totalCarbs | number }}</mat-list-item
         >
-        <mat-list-item class="mat-headline displaySubheading">
+        <mat-progress-bar
+          style="margin-left: 16px; width: 98%"
+          mode="buffer"
+          [value]="(currentCarbs / totalCarbs) * 100"
+        ></mat-progress-bar>
+        <mat-list-item class="displaySubheading">
           Fats : {{ currentFats | number }} out of
           {{ totalFats | number }}</mat-list-item
         >
-        <mat-list-item class="mat-headline displaySubheading">
+        <mat-progress-bar
+          style="margin-left: 16px; width: 98%"
+          mode="buffer"
+          [value]="(currentFats / totalFats) * 100"
+        ></mat-progress-bar>
+        <mat-list-item class="displaySubheading">
           Protiens : {{ currentProteins | number }} out of
           {{ totalProteins | number }}</mat-list-item
         >
+        <mat-progress-bar
+          style="margin-left: 16px; width: 98%"
+          mode="buffer"
+          [value]="(currentProteins / totalProteins) * 100"
+        ></mat-progress-bar>
       </mat-list>
     </div>
     <div
