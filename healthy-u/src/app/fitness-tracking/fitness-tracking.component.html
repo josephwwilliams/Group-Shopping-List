@@ -121,6 +121,7 @@
         ></mat-progress-bar>
       </mat-list>
     </div>
+
     <div
       class="col-md-6"
       data-aos="fade-left"
@@ -130,9 +131,26 @@
         pieChartData.datasets[0].data[0] +
           pieChartData.datasets[0].data[1] +
           pieChartData.datasets[0].data[2] !==
-        0
+          0 && !toggleFoodLog
       "
     >
+      <div class="row justify-content-end">
+        <button
+          matTooltipPosition="above"
+          matTooltip="View Food Log"
+          mat-mini-fab
+          [disabled]="
+            pieChartData.datasets[0].data[0] +
+              pieChartData.datasets[0].data[1] +
+              pieChartData.datasets[0].data[2] ===
+            0
+          "
+          (click)="this.toggleFoodLog = !this.toggleFoodLog"
+        >
+          <mat-icon style="color: #e4efe2">view_list</mat-icon>
+        </button>
+      </div>
+
       <div class="chart">
         <canvas
           baseChart
@@ -153,7 +171,7 @@
         pieChartData.datasets[0].data[0] +
           pieChartData.datasets[0].data[1] +
           pieChartData.datasets[0].data[2] ===
-        0
+          0 && !toggleFoodLog
       "
     >
       <div
@@ -167,6 +185,89 @@
         "
       >
         Empty Log
+      </div>
+    </div>
+    <div
+      class="col-md-6"
+      data-aos="fade-left"
+      data-aos-duration="1500"
+      data-aos-anchor=".mat-display-2"
+      *ngIf="toggleFoodLog"
+    >
+      <div class="row justify-content-end" style="margin-bottom: 20px">
+        <button
+          matTooltipPosition="above"
+          matTooltip="View Macros"
+          mat-mini-fab
+          [disabled]="
+            pieChartData.datasets[0].data[0] +
+              pieChartData.datasets[0].data[1] +
+              pieChartData.datasets[0].data[2] ===
+            0
+          "
+          (click)="this.toggleFoodLog = !this.toggleFoodLog"
+        >
+          <mat-icon style="color: #e4efe2">pie_chart</mat-icon>
+        </button>
+      </div>
+      <div class="container itemContainer">
+        <mat-card
+          *ngFor="let item of foodLog; let i = index"
+          (click)="openProduct(item)"
+          style="margin: 5px; width: 500px; height: auto; cursor: pointer"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-anchor=".mat-display-2"
+        >
+          <div
+            class="row"
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <div
+              class="col-md-2"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <img
+                class="mx-auto my-auto img-fluid"
+                style="max-height: 75px; width: auto; cursor: pointer"
+                [src]="
+                  item.image_url
+                    ? item.image_url
+                    : 'https://cdn-icons-png.flaticon.com/512/1187/1187516.png?w=826'
+                "
+              />
+            </div>
+            <div
+              class="col-md-7"
+              style="
+                display: flex;
+
+                justify-content: center;
+
+                align-items: center;
+              "
+            >
+              <h1 class="displaySubheading" style="cursor: pointer">
+                {{
+                  item.product_name ? item.product_name : item.product_name_fr
+                }}
+              </h1>
+            </div>
+            <div class="col-md-3">
+              <span
+                [matBadge]="item.numberOfGrams + 'g'"
+                style="color: #384951; transform: scale(1.5)"
+                class="material-icons"
+              >
+                scale
+              </span>
+            </div>
+          </div>
+        </mat-card>
       </div>
     </div>
   </div>

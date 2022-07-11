@@ -4,6 +4,12 @@ mat-list-item {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
 }
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .displayHeading {
   text-align: center;
   font-family: "Lora", serif;
@@ -19,6 +25,11 @@ mat-list-item {
 }
 mat-list-item {
   font-size: x-large !important;
+}
+.mat-badge-content {
+  background: #4d8278;
+  color: white;
+  font-size: xx-small;
 }
 
 .mat-mini-fab {

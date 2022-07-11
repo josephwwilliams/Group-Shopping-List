@@ -6,6 +6,8 @@ import * as AOS from 'aos';
 import { UserStorageService } from '../shared/services/auth/user-storage.service';
 import { MacroCalculatorService } from '../shared/services/macro-calculator.service';
 import * as moment from 'moment';
+import { Product } from '../shared/interface/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fitness-tracking',
@@ -13,6 +15,8 @@ import * as moment from 'moment';
   styleUrls: ['./fitness-tracking.component.css'],
 })
 export class FitnessTrackingComponent implements OnInit {
+  foodLog: Product[] = [];
+  toggleFoodLog: boolean = false;
   totalCalories: number = 0;
   currentCalories: number = 0;
   totalCarbs: number = 0;
@@ -28,7 +32,8 @@ export class FitnessTrackingComponent implements OnInit {
   logSearching: boolean = false;
   constructor(
     private userStorageService: UserStorageService,
-    private macroService: MacroCalculatorService
+    private macroService: MacroCalculatorService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,11 +47,13 @@ export class FitnessTrackingComponent implements OnInit {
     this.userStorageService
       .fetchUserFromFireBase()
       .subscribe((userData: any) => {
+        this.foodLog = [];
         if (
           userData.foodLog !== undefined &&
           userData.foodLog[this.date] !== undefined
         ) {
           this.macroService.foodLog = userData.foodLog[this.date];
+          this.foodLog = userData.foodLog[this.date];
           this.totalCalories = userData.macros.calorie.toFixed(0);
           this.totalCarbs = userData.macros.balanced.carbs.toFixed(0);
           this.totalFats = userData.macros.balanced.fat.toFixed(0);
@@ -137,6 +144,7 @@ export class FitnessTrackingComponent implements OnInit {
         this.totalProteins = 0;
         this.currentProteins = 0;
         this.value = 0;
+        this.foodLog = [];
         let dataSet = this.emptyDataSet();
         this.pieChartData.datasets = dataSet;
         this.chart?.update();
@@ -145,6 +153,7 @@ export class FitnessTrackingComponent implements OnInit {
           userData.foodLog[this.date] !== undefined
         ) {
           this.macroService.foodLog = userData.foodLog[this.date];
+          this.foodLog = userData.foodLog[this.date];
           this.totalCalories = userData.macros.calorie.toFixed(0);
           this.totalCarbs = userData.macros.balanced.carbs.toFixed(0);
           this.totalFats = userData.macros.balanced.fat.toFixed(0);
@@ -166,5 +175,8 @@ export class FitnessTrackingComponent implements OnInit {
       });
     let dataSet = this.dataSet();
     this.pieChartData.datasets = dataSet;
+  }
+  openProduct(item: Product) {
+    this.router.navigate([`product/nutrients/${item._id}`]);
   }
 }
