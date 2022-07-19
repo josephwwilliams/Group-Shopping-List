@@ -1,2 +1,11 @@
 # Healthy-U
 ![](images/Landing1.png)
+![](images/Login.png)
+![](images/Sign-Up.png)
+![](images/UserPage.png)
+![](images/Shopping.png)
+![](images/ItemDetails.png)
+![](images/Notification.png)
+![](images/ShoppingList.png)
+![](images/FitnessTab.png)
+![](images/Settings.png)
