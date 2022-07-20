@@ -1,4 +1,5 @@
 # Healthy-U
+To test Healthy-U visit https://healthyuapp.herokuapp.com/home
 
 Landing Page
 
