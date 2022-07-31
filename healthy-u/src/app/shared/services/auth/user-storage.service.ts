@@ -92,7 +92,8 @@ export class UserStorageService {
           macros: macros.data,
           profileImg: 'none',
         };
-        let userEmail = user.email.replace('@', '').replace('.', '');
+        let re = /\./gi;
+        let userEmail = user.email.replace('@', '').replace(re, '');
         return this.http.put(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}.json`,
           userData
@@ -105,7 +106,8 @@ export class UserStorageService {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
-        let userEmail = user.email.replace('@', '').replace('.', '');
+        let re = /\./gi;
+        let userEmail = user.email.replace('@', '').replace(re, '');
         return this.http.get(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}.json`
         );
@@ -117,7 +119,8 @@ export class UserStorageService {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
-        let userEmail = user.email.replace('@', '').replace('.', '');
+        let re = /\./gi;
+        let userEmail = user.email.replace('@', '').replace(re, '');
         return this.http.put(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/shoppingList.json`,
           this.shoppingListService.shoppingList
@@ -131,7 +134,8 @@ export class UserStorageService {
       take(1),
       exhaustMap((user) => {
         let image = JSON.stringify(profileImg);
-        let userEmail = user.email.replace('@', '').replace('.', '');
+        let re = /\./gi;
+        let userEmail = user.email.replace('@', '').replace(re, '');
         return this.http.put(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/profileImg.json`,
           image
@@ -144,7 +148,8 @@ export class UserStorageService {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
-        let userEmail = user.email.replace('@', '').replace('.', '');
+        let re = /\./gi;
+        let userEmail = user.email.replace('@', '').replace(re, '');
         return this.http.put(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/gender.json`,
           [gender]
@@ -157,7 +162,8 @@ export class UserStorageService {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
-        let userEmail = user.email.replace('@', '').replace('.', '');
+        let re = /\./gi;
+        let userEmail = user.email.replace('@', '').replace(re, '');
         return this.http.put(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/firstName.json`,
           [firstName]
@@ -170,7 +176,8 @@ export class UserStorageService {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
-        let userEmail = user.email.replace('@', '').replace('.', '');
+        let re = /\./gi;
+        let userEmail = user.email.replace('@', '').replace(re, '');
         return this.http.put(
           `https://life-tracker-app-869c1-default-rtdb.firebaseio.com/users/${userEmail}/lastName.json`,
           [lastName]
@@ -183,7 +190,8 @@ export class UserStorageService {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
-        let userEmail = user.email.replace('@', '').replace('.', '');
+        let re = /\./gi;
+        let userEmail = user.email.replace('@', '').replace(re, '');
         let date = new Date().toLocaleDateString('en-us', {
           year: 'numeric',
           month: 'numeric',
