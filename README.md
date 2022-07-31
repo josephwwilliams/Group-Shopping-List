@@ -1,4 +1,5 @@
 # Healthy-U
+There is a current bug with registering with an email with a period in the handle on the deployed app. Such as "test.test.test@test.com"
 To test Healthy-U visit https://healthyuapp.herokuapp.com/home
 
 Landing Page
