@@ -41,7 +41,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 @NgModule({
   exports: [
     A11yModule,
@@ -88,7 +87,6 @@ import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
     PortalModule,
     ScrollingModule,
     MatExpansionModule,
-    MatBottomSheetModule,
   ],
   declarations: [],
 })
